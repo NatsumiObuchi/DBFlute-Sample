@@ -1,0 +1,26 @@
+map:{
+    ; 2023/01/05 10:22:33.088 = map:{
+        ; diffDate = 2023/01/05 10:22:33.088
+        ; tableCount = map:{
+            ; next = 2
+            ; previous = 3
+        }
+        ; diffAuthor = obuch
+        ; tableDiff = map:{
+            ; category = map:{
+                ; tableName = category
+                ; diffType = CHANGE
+                ; columnDiff = map:{
+                    ; category_flag = map:{
+                        ; columnName = category_flag
+                        ; diffType = ADD
+                    }
+                }
+            }
+            ; details = map:{
+                ; tableName = details
+                ; diffType = DELETE
+            }
+        }
+    }
+}

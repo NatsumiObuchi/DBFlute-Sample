@@ -1,0 +1,192 @@
+/nnnnnnnnnnnnnnnnnnnnnnn
+...Calling the JDBC task
+nnnnnnnnnn/
+Buildfile: ..\mydbflute\dbflute-1.2.6\build-torque.xml
+
+jdbc:
+  [df-jdbc] 2023-01-04 14:51:13,140 INFO  - +------------------------------------------+
+  [df-jdbc] 2023-01-04 14:51:13,140 INFO  - |                                          |
+  [df-jdbc] 2023-01-04 14:51:13,140 INFO  - |                   JDBC                   |
+  [df-jdbc] 2023-01-04 14:51:13,140 INFO  - |                                          |
+  [df-jdbc] 2023-01-04 14:51:13,140 INFO  - +------------------------------------------+
+  [df-jdbc] 2023-01-04 14:51:13,156 INFO  - ...Preparing data source:
+  [df-jdbc] 2023-01-04 14:51:13,156 INFO  -   driver = com.mysql.jdbc.Driver
+  [df-jdbc] 2023-01-04 14:51:13,187 INFO  -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+  [df-jdbc] 2023-01-04 14:51:13,187 INFO  -   user   = root
+  [df-jdbc] 2023-01-04 14:51:13,222 INFO  - 
+  [df-jdbc] 2023-01-04 14:51:13,222 INFO  - ...Starting to process JDBC to SchemaXML
+  [df-jdbc] 2023-01-04 14:51:13,222 INFO  - ...Loading previous schema (schema diff process)
+  [df-jdbc] 2023-01-04 14:51:13,222 INFO  -  -> no previous (first time)
+  [df-jdbc] 2023-01-04 14:51:13,234 INFO  - ...Getting DB connection
+  [df-jdbc] 2023-01-04 14:51:13,250 INFO  - ...Connecting to database by data source:
+  [df-jdbc] Wed Jan 04 14:51:13 JST 2023 WARN: Establishing SSL connection without server's identity verification is not recommended. According to MySQL 5.5.45+, 5.6.26+ and 5.7.6+ requirements SSL connection must be established by default if explicit option isn't set. For compliance with existing applications not using SSL the verifyServerCertificate property is set to 'false'. You need either to explicitly disable SSL by setting useSSL=false, or set useSSL=true and provide truststore for server certificate verification.
+  [df-jdbc] 2023-01-04 14:51:13,670 INFO  -   product = MySQL 8.0.30
+  [df-jdbc] 2023-01-04 14:51:13,670 INFO  -   driver  = MySQL Connector Java mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e ) for JDBC 4.0
+  [df-jdbc] 2023-01-04 14:51:13,670 INFO  - ...Getting DB meta data
+  [df-jdbc] 2023-01-04 14:51:13,670 INFO  - ...Getting tables:
+  [df-jdbc] 2023-01-04 14:51:13,670 INFO  -   schema = {dbflute_sample.dbflute_sample as main}
+  [df-jdbc] 2023-01-04 14:51:13,670 INFO  -   types  = [TABLE, VIEW]
+  [df-jdbc] 2023-01-04 14:51:13,686 INFO  - select table_type as OBJECT_TYPE, table_name as TABLE_NAME, table_comment as COMMENTS from information_schema.tables where table_schema = 'dbflute_sample' order by table_name asc
+  [df-jdbc] 2023-01-04 14:51:13,686 INFO  - select table_name as TABLE_NAME, column_name as COLUMN_NAME, column_comment as COMMENTS from information_schema.columns where table_schema = 'dbflute_sample' order by table_name asc, column_name asc
+  [df-jdbc] 2023-01-04 14:51:13,701 INFO  - select TABLE_NAME, COLUMN_NAME, DATETIME_PRECISION from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = 'dbflute_sample' and DATA_TYPE = 'datetime'
+  [df-jdbc] 2023-01-04 14:51:13,701 INFO  - 
+  [df-jdbc] 2023-01-04 14:51:13,701 INFO  - $ /= = = = = = = = = = = = = = = = = = = = = = = = = =
+  [df-jdbc] 2023-01-04 14:51:13,701 INFO  - $ [Table List]
+  [df-jdbc] 2023-01-04 14:51:13,701 INFO  - $ dbflute_sample.category(TABLE)
+  [df-jdbc] 2023-01-04 14:51:13,751 INFO  - $ dbflute_sample.expenses(TABLE)
+  [df-jdbc] 2023-01-04 14:51:13,767 INFO  - $ 
+  [df-jdbc] 2023-01-04 14:51:13,767 INFO  - $ [Table Count]
+  [df-jdbc] 2023-01-04 14:51:13,767 INFO  - $ 2
+  [df-jdbc] 2023-01-04 14:51:13,767 INFO  - $ = = = = = = = = = =/
+  [df-jdbc] 2023-01-04 14:51:13,767 INFO  - 
+  [df-jdbc] 2023-01-04 14:51:13,781 INFO  - ...Getting sequences
+  [df-jdbc] 2023-01-04 14:51:13,781 INFO  - ...Serializing XML:
+  [df-jdbc] 2023-01-04 14:51:13,781 INFO  -   filePath = ./schema/project-schema-dbflute_sample.xml
+  [df-jdbc] 2023-01-04 14:51:13,781 INFO  -   encoding = UTF-8
+  [df-jdbc] 2023-01-04 14:51:13,781 INFO  - ...Loading next schema (schema diff process)
+  [df-jdbc] 2023-01-04 14:51:13,797 INFO  - ...Resolving XML by database.dtd in same package
+  [df-jdbc] 2023-01-04 14:51:13,959 INFO  -  -> different from previous (schema diff)
+  [df-jdbc] 2023-01-04 14:51:13,959 INFO  - ...Serializing schema-diff:
+  [df-jdbc] 2023-01-04 14:51:13,959 INFO  -   filePath = ./schema/project-history-dbflute_sample.diffmap
+  [df-jdbc] 2023-01-04 14:51:13,959 INFO  - ...closeReally()
+  [df-jdbc] Wed Jan 04 14:51:13 JST 2023 WARN: Caught while disconnecting...
+  [df-jdbc] 
+  [df-jdbc] EXCEPTION STACK TRACE:
+  [df-jdbc] 
+  [df-jdbc] 
+  [df-jdbc] 
+  [df-jdbc] ** BEGIN NESTED EXCEPTION ** 
+  [df-jdbc] 
+  [df-jdbc] javax.net.ssl.SSLException
+  [df-jdbc] MESSAGE: closing inbound before receiving peer's close_notify
+  [df-jdbc] 
+  [df-jdbc] STACKTRACE:
+  [df-jdbc] 
+  [df-jdbc] javax.net.ssl.SSLException: closing inbound before receiving peer's close_notify
+  [df-jdbc] 	at java.base/sun.security.ssl.SSLSocketImpl.shutdownInput(SSLSocketImpl.java:842)
+  [df-jdbc] 	at java.base/sun.security.ssl.SSLSocketImpl.shutdownInput(SSLSocketImpl.java:821)
+  [df-jdbc] 	at com.mysql.jdbc.MysqlIO.quit(MysqlIO.java:2249)
+  [df-jdbc] 	at com.mysql.jdbc.ConnectionImpl.realClose(ConnectionImpl.java:4221)
+  [df-jdbc] 	at com.mysql.jdbc.ConnectionImpl.close(ConnectionImpl.java:1464)
+  [df-jdbc] 	at org.dbflute.helper.jdbc.connection.DfFittingConnection.closeReally(DfFittingConnection.java:67)
+  [df-jdbc] 	at org.dbflute.helper.jdbc.connection.DfDataSourceHandler.destroy(DfDataSourceHandler.java:121)
+  [df-jdbc] 	at org.dbflute.task.bs.assistant.DfTaskControlLogic.destroyDataSource(DfTaskControlLogic.java:129)
+  [df-jdbc] 	at org.dbflute.task.bs.DfAbstractTask.destroyDataSource(DfAbstractTask.java:165)
+  [df-jdbc] 	at org.dbflute.task.bs.DfAbstractTask$1.callDestroyDataSource(DfAbstractTask.java:105)
+  [df-jdbc] 	at org.dbflute.task.bs.assistant.DfTaskBasicController.destroyDataSource(DfTaskBasicController.java:181)
+  [df-jdbc] 	at org.dbflute.task.bs.assistant.DfTaskBasicController.execute(DfTaskBasicController.java:109)
+  [df-jdbc] 	at org.dbflute.task.bs.DfAbstractTask.execute(DfAbstractTask.java:135)
+  [df-jdbc] 	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+  [df-jdbc] 	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+  [df-jdbc] 	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+  [df-jdbc] 	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+  [df-jdbc] 	at org.apache.tools.ant.Task.perform(Task.java:348)
+  [df-jdbc] 	at org.apache.tools.ant.Target.execute(Target.java:357)
+  [df-jdbc] 	at org.apache.tools.ant.Target.performTasks(Target.java:385)
+  [df-jdbc] 	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1329)
+  [df-jdbc] 	at org.apache.tools.ant.Project.executeTarget(Project.java:1298)
+  [df-jdbc] 	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+  [df-jdbc] 	at org.apache.tools.ant.Project.executeTargets(Project.java:1181)
+  [df-jdbc] 	at org.apache.tools.ant.Main.runBuild(Main.java:698)
+  [df-jdbc] 	at org.apache.tools.ant.Main.startAnt(Main.java:199)
+  [df-jdbc] 	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:257)
+  [df-jdbc] 	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:104)
+  [df-jdbc] 
+  [df-jdbc] 
+  [df-jdbc] ** END NESTED EXCEPTION **
+  [df-jdbc] 
+  [df-jdbc] 
+  [df-jdbc] 2023-01-04 14:51:13,975 INFO  - 
+  [df-jdbc] _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+  [df-jdbc] [Final Message]: 00m00s851ms
+  [df-jdbc] 
+  [df-jdbc]   DBFLUTE_CLIENT: {dbflute_sample}
+  [df-jdbc]     database  = mysql (MySQL 8.0.30)
+  [df-jdbc]     language  = java
+  [df-jdbc]     container = spring
+  [df-jdbc]     package   = org.docksidestage.dbflute
+  [df-jdbc] 
+  [df-jdbc]   DBFLUTE_ENVIRONMENT_TYPE: {}
+  [df-jdbc]     driver = com.mysql.jdbc.Driver
+  [df-jdbc]     url    = jdbc:mysql://localhost:3306/dbflute_sample
+  [df-jdbc]     schema = {dbflute_sample.dbflute_sample as main}
+  [df-jdbc]     user   = root
+  [df-jdbc]     props  = {}
+  [df-jdbc]     additionalSchema = 
+  [df-jdbc]     repsEnvType      = ut
+  [df-jdbc]     refreshProject   = $$AutoDetect$$
+  [df-jdbc] _/_/_/_/_/_/_/_/_/_/ {JDBC}
+
+BUILD SUCCESSFUL
+Total time: 1 second
+/nnnnnnnnnnnnnnnnnnnnnn
+...Calling the Doc task
+nnnnnnnnnn/
+Buildfile: ..\mydbflute\dbflute-1.2.6\build-torque.xml
+
+doc:
+   [df-doc] templates
+   [df-doc] 2023-01-04 14:51:15,226 INFO  - +------------------------------------------+
+   [df-doc] 2023-01-04 14:51:15,226 INFO  - |                                          |
+   [df-doc] 2023-01-04 14:51:15,226 INFO  - |                   Doc                    |
+   [df-doc] 2023-01-04 14:51:15,226 INFO  - |                                          |
+   [df-doc] 2023-01-04 14:51:15,240 INFO  - +------------------------------------------+
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - ...Preparing data source:
+   [df-doc] 2023-01-04 14:51:15,256 INFO  -   driver = com.mysql.jdbc.Driver
+   [df-doc] 2023-01-04 14:51:15,256 INFO  -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+   [df-doc] 2023-01-04 14:51:15,256 INFO  -   user   = root
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - 
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - * * * * * * * * * * *
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - *                   *
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - *    Schema HTML    *
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - *                   *
+   [df-doc] 2023-01-04 14:51:15,256 INFO  - * * * * * * * * * * *
+   [df-doc] 2023-01-04 14:51:15,288 INFO  - ...Resolving XML by database.dtd in same package
+   [df-doc] 2023-01-04 14:51:15,335 INFO  - /=======================================
+   [df-doc] 2023-01-04 14:51:15,335 INFO  - ...Initializing additional primary keys.
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - ==========/
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - /=======================================
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - ...Initializing additional unique keys.
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - ==========/
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - /=======================================
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - ...Initializing additional foreign keys.
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - ==========/
+   [df-doc] 2023-01-04 14:51:15,351 INFO  - ...Initializing ClassificationDeployment: project=dbflute_sample
+   [df-doc] 2023-01-04 14:51:15,398 INFO  - generator.parse("doc/ControlDocument.vm", ctx);
+   [df-doc] 2023-01-04 14:51:15,414 INFO  - ...Suppressing velocity.log, which is unneeded for also debug
+   [df-doc] 2023-01-04 14:51:15,493 INFO  - ...Setting up documentOutputDirectory: ./output/doc
+   [df-doc] 2023-01-04 14:51:15,508 INFO  - ...Loading schema history
+   [df-doc] 2023-01-04 14:51:15,527 INFO  -  -> found history: count=1
+   [df-doc] 2023-01-04 14:51:15,575 INFO  -  
+   [df-doc] 2023-01-04 14:51:15,575 INFO  - ...Setting up arrange queries for documents (ArrangeQueryDoc)
+   [df-doc] 2023-01-04 14:51:15,575 INFO  -  -> no arrange query
+   [df-doc] 2023-01-04 14:51:15,575 INFO  - Not found sql directory on resources: ../src/main/resources
+   [df-doc] 2023-01-04 14:51:15,654 INFO  - *Cannot auto-detect your refresh Eclipse proejct.
+   [df-doc] 2023-01-04 14:51:15,654 INFO  - /===========================================================================
+   [df-doc] 2023-01-04 14:51:15,654 INFO  - ...Refreshing [$$AutoDetect$$] by http://localhost:8386/
+   [df-doc] 2023-01-04 14:51:15,676 INFO  - ...Retrying refreshing by default secondary URL http://localhost:8387/
+   [df-doc] 2023-01-04 14:51:15,676 INFO  - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+   [df-doc] 2023-01-04 14:51:15,676 INFO  - ==========/
+   [df-doc] 2023-01-04 14:51:15,676 INFO  - 
+   [df-doc] _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+   [df-doc] [Final Message]: 00m00s466ms
+   [df-doc] 
+   [df-doc]   DBFLUTE_CLIENT: {dbflute_sample}
+   [df-doc]     database  = mysql
+   [df-doc]     language  = java
+   [df-doc]     container = spring
+   [df-doc]     package   = org.docksidestage.dbflute
+   [df-doc] 
+   [df-doc]   DBFLUTE_ENVIRONMENT_TYPE: {}
+   [df-doc]     driver = com.mysql.jdbc.Driver
+   [df-doc]     url    = jdbc:mysql://localhost:3306/dbflute_sample
+   [df-doc]     schema = {dbflute_sample.dbflute_sample as main}
+   [df-doc]     user   = root
+   [df-doc]     props  = {}
+   [df-doc]     additionalSchema = 
+   [df-doc]     repsEnvType      = ut
+   [df-doc]     refreshProject   = $$AutoDetect$$
+   [df-doc] _/_/_/_/_/_/_/_/_/_/ {Doc}
+
+BUILD SUCCESSFUL
+Total time: 1 second

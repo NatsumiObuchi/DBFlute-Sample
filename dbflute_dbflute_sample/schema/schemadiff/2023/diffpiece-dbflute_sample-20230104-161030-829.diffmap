@@ -1,0 +1,20 @@
+map:{
+    ; 2023/01/04 16:10:30.829 = map:{
+        ; diffDate = 2023/01/04 16:10:30.829
+        ; tableCount = map:{
+            ; next = 3
+            ; previous = 1
+        }
+        ; diffAuthor = obuch
+        ; tableDiff = map:{
+            ; category = map:{
+                ; tableName = category
+                ; diffType = ADD
+            }
+            ; expenses = map:{
+                ; tableName = expenses
+                ; diffType = ADD
+            }
+        }
+    }
+}
