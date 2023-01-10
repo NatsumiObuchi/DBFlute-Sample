@@ -94,18 +94,6 @@ public class BsCategoryCB extends AbstractConditionBean {
         return (CategoryCB)this;
     }
 
-    /**
-     * Accept the query condition of unique key as equal.
-     * @param categoryName : UQ, NotNull, VARCHAR(15). (NotNull)
-     * @return this. (NotNull)
-     */
-    public CategoryCB acceptUniqueOf(String categoryName) {
-        assertObjectNotNull("categoryName", categoryName);
-        BsCategoryCB cb = this;
-        cb.query().setCategoryName_Equal(categoryName);
-        return (CategoryCB)this;
-    }
-
     public ConditionBean addOrderBy_PK_Asc() {
         query().addOrderBy_Id_Asc();
         return this;
@@ -304,7 +292,7 @@ public class BsCategoryCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnId() { return doColumn("id"); }
         /**
-         * category_name: {UQ, NotNull, VARCHAR(15)}
+         * category_name: {NotNull, VARCHAR(15)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnCategoryName() { return doColumn("category_name"); }

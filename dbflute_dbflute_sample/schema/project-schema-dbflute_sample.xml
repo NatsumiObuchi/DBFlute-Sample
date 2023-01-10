@@ -10,9 +10,6 @@
             name="category_name" required="true" size="15" type="VARCHAR"/>
         <column comment="" dbType="BIT" javaType="Boolean"
             name="category_flag" required="true" type="BIT"/>
-        <unique name="category_name">
-            <unique-column name="category_name" position="1"/>
-        </unique>
     </table>
     <table name="expenses" schema="dbflute_sample.$$NoNameSchema$$" type="TABLE">
         <column autoIncrement="true" comment="" dbType="INT"

@@ -115,14 +115,14 @@ public class BsCategoryCQ extends AbstractBsCategoryCQ {
 
     /**
      * Add order-by as ascend. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @return this. (NotNull)
      */
     public BsCategoryCQ addOrderBy_CategoryName_Asc() { regOBA("category_name"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @return this. (NotNull)
      */
     public BsCategoryCQ addOrderBy_CategoryName_Desc() { regOBD("category_name"); return this; }

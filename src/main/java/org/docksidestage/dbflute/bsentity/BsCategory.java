@@ -65,7 +65,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     /** id: {PK, ID, NotNull, INT(10)} */
     protected Integer _id;
 
-    /** category_name: {UQ, NotNull, VARCHAR(15)} */
+    /** category_name: {NotNull, VARCHAR(15)} */
     protected String _categoryName;
 
     /** category_flag: {NotNull, BIT} */
@@ -91,17 +91,6 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     public boolean hasPrimaryKeyValue() {
         if (_id == null) { return false; }
         return true;
-    }
-
-    /**
-     * To be unique by the unique column. <br>
-     * You can update the entity by the key when entity update (NOT batch update).
-     * @param categoryName : UQ, NotNull, VARCHAR(15). (NotNull)
-     */
-    public void uniqueBy(String categoryName) {
-        __uniqueDrivenProperties.clear();
-        __uniqueDrivenProperties.addPropertyName("categoryName");
-        setCategoryName(categoryName);
     }
 
     // ===================================================================================
@@ -215,7 +204,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     }
 
     /**
-     * [get] category_name: {UQ, NotNull, VARCHAR(15)} <br>
+     * [get] category_name: {NotNull, VARCHAR(15)} <br>
      * @return The value of the column 'category_name'. (basically NotNull if selected: for the constraint)
      */
     public String getCategoryName() {
@@ -224,7 +213,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     }
 
     /**
-     * [set] category_name: {UQ, NotNull, VARCHAR(15)} <br>
+     * [set] category_name: {NotNull, VARCHAR(15)} <br>
      * @param categoryName The value of the column 'category_name'. (basically NotNull if update: for the constraint)
      */
     public void setCategoryName(String categoryName) {

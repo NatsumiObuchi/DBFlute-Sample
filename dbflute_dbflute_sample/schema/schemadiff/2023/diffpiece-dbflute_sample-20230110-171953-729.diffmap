@@ -1,0 +1,19 @@
+map:{
+    ; 2023/01/10 17:19:53.729 = map:{
+        ; diffDate = 2023/01/10 17:19:53.729
+        ; diffAuthor = obuch
+        ; diffGitBranch = main
+        ; tableDiff = map:{
+            ; category = map:{
+                ; tableName = category
+                ; diffType = CHANGE
+                ; uniqueKeyDiff = map:{
+                    ; category_name = map:{
+                        ; constraintName = category_name
+                        ; diffType = DELETE
+                    }
+                }
+            }
+        }
+    }
+}

@@ -186,31 +186,6 @@ public abstract class BsCategoryBhv extends AbstractBehaviorWritable<Category, C
         return newConditionBean().acceptPK(id);
     }
 
-    /**
-     * Select the entity by the unique-key value.
-     * @param categoryName : UQ, NotNull, VARCHAR(15). (NotNull)
-     * @return The optional entity selected by the unique key. (NotNull: if no data, empty entity)
-     * @throws EntityAlreadyDeletedException When get(), required() of return value is called and the value is null, which means entity has already been deleted (not found).
-     * @throws EntityDuplicatedException When the entity has been duplicated.
-     * @throws SelectEntityConditionNotFoundException When the condition for selecting an entity is not found.
-     */
-    public OptionalEntity<Category> selectByUniqueOf(String categoryName) {
-        return facadeSelectByUniqueOf(categoryName);
-    }
-
-    protected OptionalEntity<Category> facadeSelectByUniqueOf(String categoryName) {
-        return doSelectByUniqueOf(categoryName, typeOfSelectedEntity());
-    }
-
-    protected <ENTITY extends Category> OptionalEntity<ENTITY> doSelectByUniqueOf(String categoryName, Class<? extends ENTITY> tp) {
-        return createOptionalEntity(doSelectEntity(xprepareCBAsUniqueOf(categoryName), tp), categoryName);
-    }
-
-    protected CategoryCB xprepareCBAsUniqueOf(String categoryName) {
-        assertObjectNotNull("categoryName", categoryName);
-        return newConditionBean().acceptUniqueOf(categoryName);
-    }
-
     // ===================================================================================
     //                                                                         List Select
     //                                                                         ===========
@@ -463,14 +438,6 @@ public abstract class BsCategoryBhv extends AbstractBehaviorWritable<Category, C
      */
     public List<Integer> extractIdList(List<Category> categoryList)
     { return helpExtractListInternally(categoryList, "id"); }
-
-    /**
-     * Extract the value list of (single) unique key categoryName.
-     * @param categoryList The list of category. (NotNull, EmptyAllowed)
-     * @return The list of the column value. (NotNull, EmptyAllowed, NotNullElement)
-     */
-    public List<String> extractCategoryNameList(List<Category> categoryList)
-    { return helpExtractListInternally(categoryList, "categoryName"); }
 
     // ===================================================================================
     //                                                                       Entity Update

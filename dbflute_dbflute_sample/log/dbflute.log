@@ -1676,3 +1676,868 @@ _/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
     repsEnvType      = ut
     refreshProject   = $$AutoDetect$$
 _/_/_/_/_/_/_/_/_/_/ {Sql2Entity}
+2023-01-10 17:12:14,110 [main] INFO  (DfReplaceSchemaTask#begin():94) - +------------------------------------------+
+2023-01-10 17:12:14,115 [main] INFO  (DfReplaceSchemaTask#begin():95) - |                                          |
+2023-01-10 17:12:14,115 [main] INFO  (DfReplaceSchemaTask#begin():96) - |              ReplaceSchema               |
+2023-01-10 17:12:14,126 [main] INFO  (DfReplaceSchemaTask#begin():104) - |                                          |
+2023-01-10 17:12:14,126 [main] INFO  (DfReplaceSchemaTask#begin():105) - +------------------------------------------+
+2023-01-10 17:12:14,128 [main] INFO  (DfReplaceSchemaTask#waitBeforeReps():423) - ...Waiting for your GO SIGN from stdin before ReplaceSchema:
+2023-01-10 17:12:17,571 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:12:17,573 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:12:17,573 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:12:17,575 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:12:17,614 [main] INFO  (DfDataSourceHandler#createConnection():166) - ...Connecting to database by data source:
+2023-01-10 17:12:18,604 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():233) -   product = MySQL 8.0.30
+2023-01-10 17:12:18,604 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():234) -   driver  = MySQL Connector Java mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e ) for JDBC 4.0
+2023-01-10 17:12:18,627 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():253) - 
+2023-01-10 17:12:18,627 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():254) - * * * * * * * * * * *
+2023-01-10 17:12:18,628 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():255) - *                   *
+2023-01-10 17:12:18,631 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():256) - * Initialize Schema *
+2023-01-10 17:12:18,631 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():257) - *                   *
+2023-01-10 17:12:18,632 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():258) - * * * * * * * * * * *
+2023-01-10 17:12:18,657 [main] INFO  (DfTableExtractor#doGetTableList():66) - ...Getting tables:
+2023-01-10 17:12:18,660 [main] INFO  (DfTableExtractor#doGetTableList():67) -   schema = {dbflute_sample.dbflute_sample as main}
+2023-01-10 17:12:18,662 [main] INFO  (DfTableExtractor#doGetTableList():68) -   types  = [TABLE, VIEW]
+2023-01-10 17:12:18,755 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - truncate table dbflute_sample.expenses
+2023-01-10 17:12:18,773 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - alter table dbflute_sample.expenses drop foreign key expenses_ibfk_1
+2023-01-10 17:12:18,792 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - drop table dbflute_sample.category
+2023-01-10 17:12:18,804 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - drop table dbflute_sample.expenses
+2023-01-10 17:12:18,875 [main] INFO  (DfCreateSchemaProcess#createSchema():293) - 
+2023-01-10 17:12:18,876 [main] INFO  (DfCreateSchemaProcess#createSchema():294) - * * * * * * * * *
+2023-01-10 17:12:18,877 [main] INFO  (DfCreateSchemaProcess#createSchema():295) - *               *
+2023-01-10 17:12:18,880 [main] INFO  (DfCreateSchemaProcess#createSchema():296) - * Create Schema *
+2023-01-10 17:12:18,881 [main] INFO  (DfCreateSchemaProcess#createSchema():297) - *               *
+2023-01-10 17:12:18,882 [main] INFO  (DfCreateSchemaProcess#createSchema():298) - * * * * * * * * *
+2023-01-10 17:12:18,890 [main] INFO  (DfSqlFileFireMan#fire():68) - ...Firing: replace-schema.sql
+2023-01-10 17:12:18,895 [main] INFO  (DfSqlFileRunnerBase#traceSql():168) - 
+create table category(
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     category_name VARCHAR(15) UNIQUE NOT NULL,
+     category_flag TINYINT(1) NOT NULL)
+2023-01-10 17:12:18,933 [main] INFO  (DfSqlFileRunnerBase#traceSql():168) - 
+-- category_flag 支出：１　収入：２
+     
+     create table expenses(
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     date DATE NOT NULL,
+     category_id INT NOT NULL,
+     income INT,
+     expenditure INT,
+     detail VARCHAR(20),
+     FOREIGN KEY(category_id)
+     REFERENCES category(id))
+2023-01-10 17:12:18,974 [main] INFO  (DfSqlFileRunnerBase#traceSql():168) - 
+INSERT INTO category(category_name, category_flag) 
+     VALUES("家賃",1),("光熱費",1),("食費",1),("外食費",1),("日用品",1),
+     ("交通費",1),("衣服",1),("交際費",1),("趣味",1),("その他",1),
+     ("給料",2),("その他",2)
+2023-01-10 17:12:18,989 [main] INFO  (DfSqlFileFireMan#fire():93) - Create Schema: success=2, failure=1 *break (in 1 files)
+2023-01-10 17:12:18,996 [main] ERROR (DfDBFluteTaskUtil#logException():150) - Look! Read the message below.
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Failed to execute DBFlute Task 'ReplaceSchema'.
+
+[Advice]
+Check the exception messages and the stack traces.
+
+[Database Product]
+MySQL 8.0.30
+
+[JDBC Driver]
+MySQL Connector Java mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e ) for JDBC 4.0
+* * * * * * * * * */
+org.dbflute.exception.SQLFailureException: Look! Read the message below.
+/* * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * *
+Failed to execute the SQL!
+
+[SQL File]
+playsql\replace-schema.sql
+
+[Executed SQL]
+INSERT INTO category(category_name, category_flag) 
+     VALUES("家賃",1),("光熱費",1),("食費",1),("外食費",1),("日用品",1),
+     ("交通費",1),("衣服",1),("交際費",1),("趣味",1),("その他",1),
+     ("給料",2),("その他",2)
+
+[SQLState]
+23000
+
+[ErrorCode]
+1062
+
+[SQLException]
+com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException
+Duplicate entry 'その他' for key 'category.category_name'
+* * * * * * * * * */
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileRunnerBase.throwSQLFailureException(DfSqlFileRunnerBase.java:587)
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileRunnerExecute.execSQL(DfSqlFileRunnerExecute.java:80)
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileRunnerBase.runTransaction(DfSqlFileRunnerBase.java:122)
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileFireMan.processSqlFile(DfSqlFileFireMan.java:174)
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileFireMan.fire(DfSqlFileFireMan.java:71)
+	at org.dbflute.logic.replaceschema.process.DfCreateSchemaProcess.createSchema(DfCreateSchemaProcess.java:302)
+	at org.dbflute.logic.replaceschema.process.DfCreateSchemaProcess.execute(DfCreateSchemaProcess.java:154)
+	at org.dbflute.task.DfReplaceSchemaTask.createSchema(DfReplaceSchemaTask.java:309)
+	at org.dbflute.task.DfReplaceSchemaTask.executeCoreProcess(DfReplaceSchemaTask.java:254)
+	at org.dbflute.task.DfReplaceSchemaTask.processReplaceSchema(DfReplaceSchemaTask.java:240)
+	at org.dbflute.task.DfReplaceSchemaTask.doExecute(DfReplaceSchemaTask.java:160)
+	at org.dbflute.task.bs.DfAbstractTexenTask$1.callActualExecute(DfAbstractTexenTask.java:129)
+	at org.dbflute.task.bs.assistant.DfTaskBasicController.doExecute(DfTaskBasicController.java:192)
+	at org.dbflute.task.bs.assistant.DfTaskBasicController.execute(DfTaskBasicController.java:78)
+	at org.dbflute.task.bs.DfAbstractTexenTask.execute(DfAbstractTexenTask.java:151)
+	at org.apache.tools.ant.UnknownElement.execute(UnknownElement.java:288)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:104)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:577)
+	at org.apache.tools.ant.dispatch.DispatchUtils.execute(DispatchUtils.java:105)
+	at org.apache.tools.ant.Task.perform(Task.java:348)
+	at org.apache.tools.ant.Target.execute(Target.java:357)
+	at org.apache.tools.ant.Target.performTasks(Target.java:385)
+	at org.apache.tools.ant.Project.executeSortedTargets(Project.java:1329)
+	at org.apache.tools.ant.Project.executeTarget(Project.java:1298)
+	at org.apache.tools.ant.helper.DefaultExecutor.executeTargets(DefaultExecutor.java:41)
+	at org.apache.tools.ant.Project.executeTargets(Project.java:1181)
+	at org.apache.tools.ant.Main.runBuild(Main.java:698)
+	at org.apache.tools.ant.Main.startAnt(Main.java:199)
+	at org.apache.tools.ant.launch.Launcher.run(Launcher.java:257)
+	at org.apache.tools.ant.launch.Launcher.main(Launcher.java:104)
+Caused by: com.mysql.jdbc.exceptions.jdbc4.MySQLIntegrityConstraintViolationException: Duplicate entry 'その他' for key 'category.category_name'
+	at java.base/jdk.internal.reflect.DirectConstructorHandleAccessor.newInstance(DirectConstructorHandleAccessor.java:67)
+	at java.base/java.lang.reflect.Constructor.newInstanceWithCaller(Constructor.java:499)
+	at java.base/java.lang.reflect.Constructor.newInstance(Constructor.java:483)
+	at com.mysql.jdbc.Util.handleNewInstance(Util.java:425)
+	at com.mysql.jdbc.Util.getInstance(Util.java:408)
+	at com.mysql.jdbc.SQLError.createSQLException(SQLError.java:936)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3976)
+	at com.mysql.jdbc.MysqlIO.checkErrorPacket(MysqlIO.java:3912)
+	at com.mysql.jdbc.MysqlIO.sendCommand(MysqlIO.java:2530)
+	at com.mysql.jdbc.MysqlIO.sqlQueryDirect(MysqlIO.java:2683)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2482)
+	at com.mysql.jdbc.ConnectionImpl.execSQL(ConnectionImpl.java:2440)
+	at com.mysql.jdbc.StatementImpl.executeInternal(StatementImpl.java:845)
+	at com.mysql.jdbc.StatementImpl.execute(StatementImpl.java:745)
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileRunnerExecute.processNonDispatch(DfSqlFileRunnerExecute.java:98)
+	at org.dbflute.logic.replaceschema.process.DfCreateSchemaProcess$DfSqlFileRunnerExecuteCreateSchema.processNonDispatch(DfCreateSchemaProcess.java:490)
+	at org.dbflute.helper.jdbc.sqlfile.DfSqlFileRunnerExecute.execSQL(DfSqlFileRunnerExecute.java:66)
+	... 28 more
+2023-01-10 17:12:19,051 [main] INFO  (DfDataSourceHandler#destroy():120) - ...closeReally()
+2023-01-10 17:12:19,088 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m05s002ms *Abort
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql (MySQL 8.0.30)
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+
+ Create Schema: success=2, failure=1 *break (in 1 files) - 00m00s366ms
+  (Initialize Schema) - 00m00s247ms
+  (Create Schema) - 00m00s106ms
+  x replace-schema.sql
+   >> (failed: Look at the exception message)
+    * * * * * *
+    * Failure *
+    * * * * * *
+_/_/_/_/_/_/_/_/_/_/ {ReplaceSchema}
+2023-01-10 17:12:29,105 [main] INFO  (TorqueJDBCTransformTask#begin():104) - +------------------------------------------+
+2023-01-10 17:12:29,108 [main] INFO  (TorqueJDBCTransformTask#begin():105) - |                                          |
+2023-01-10 17:12:29,108 [main] INFO  (TorqueJDBCTransformTask#begin():106) - |                   JDBC                   |
+2023-01-10 17:12:29,108 [main] INFO  (TorqueJDBCTransformTask#begin():107) - |                                          |
+2023-01-10 17:12:29,108 [main] INFO  (TorqueJDBCTransformTask#begin():108) - +------------------------------------------+
+2023-01-10 17:12:29,152 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:12:29,153 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:12:29,154 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:12:29,157 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:12:29,211 [main] INFO  (DfSchemaXmlSerializer#serialize():305) - 
+2023-01-10 17:12:29,212 [main] INFO  (DfSchemaXmlSerializer#serialize():306) - ...Starting to process JDBC to SchemaXML
+2023-01-10 17:12:29,214 [main] INFO  (DfSchemaXmlSerializer#doLoadPreviousSchema():1559) - ...Loading previous schema (schema diff process)
+2023-01-10 17:12:29,234 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:12:29,344 [main] INFO  (DfSchemaXmlSerializer#generateXML():379) - ...Getting DB connection
+2023-01-10 17:12:29,357 [main] INFO  (DfDataSourceHandler#createConnection():166) - ...Connecting to database by data source:
+2023-01-10 17:12:30,191 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():233) -   product = MySQL 8.0.30
+2023-01-10 17:12:30,191 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():234) -   driver  = MySQL Connector Java mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e ) for JDBC 4.0
+2023-01-10 17:12:30,194 [main] INFO  (DfSchemaXmlSerializer#generateXML():382) - ...Getting DB meta data
+2023-01-10 17:12:30,196 [main] INFO  (DfTableExtractor#doGetTableList():66) - ...Getting tables:
+2023-01-10 17:12:30,198 [main] INFO  (DfTableExtractor#doGetTableList():67) -   schema = {dbflute_sample.dbflute_sample as main}
+2023-01-10 17:12:30,199 [main] INFO  (DfTableExtractor#doGetTableList():68) -   types  = [TABLE, VIEW]
+2023-01-10 17:12:30,220 [main] INFO  (DfDbCommentExtractorBase#doSelectUserTabComments():121) - select table_type as OBJECT_TYPE, table_name as TABLE_NAME, table_comment as COMMENTS from information_schema.tables where table_schema = 'dbflute_sample' order by table_name asc
+2023-01-10 17:12:30,233 [main] INFO  (DfDbCommentExtractorBase#doSelectUserColComments():168) - select table_name as TABLE_NAME, column_name as COLUMN_NAME, column_comment as COMMENTS from information_schema.columns where table_schema = 'dbflute_sample' order by table_name asc, column_name asc
+2023-01-10 17:12:30,246 [main] INFO  (DfDatetimePrecisionExtractorMySQL#extractDatetimePrecisionMap():59) - select TABLE_NAME, COLUMN_NAME, DATETIME_PRECISION from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = 'dbflute_sample' and DATA_TYPE = 'datetime'
+2023-01-10 17:12:30,271 [main] INFO  (DfSchemaXmlSerializer#processTable():438) - 
+2023-01-10 17:12:30,272 [main] INFO  (DfSchemaXmlSerializer#processTable():439) - $ /= = = = = = = = = = = = = = = = = = = = = = = = = =
+2023-01-10 17:12:30,273 [main] INFO  (DfSchemaXmlSerializer#processTable():440) - $ [Table List]
+2023-01-10 17:12:30,275 [main] INFO  (DfSchemaXmlSerializer#doProcessTable():520) - $ dbflute_sample.category(TABLE)
+2023-01-10 17:12:30,342 [main] INFO  (DfSchemaXmlSerializer#doProcessTable():520) - $ dbflute_sample.expenses(TABLE)
+2023-01-10 17:12:30,374 [main] INFO  (DfSchemaXmlSerializer#processTable():452) - $ 
+2023-01-10 17:12:30,375 [main] INFO  (DfSchemaXmlSerializer#processTable():453) - $ [Table Count]
+2023-01-10 17:12:30,376 [main] INFO  (DfSchemaXmlSerializer#processTable():454) - $ 2
+2023-01-10 17:12:30,376 [main] INFO  (DfSchemaXmlSerializer#processTable():455) - $ = = = = = = = = = =/
+2023-01-10 17:12:30,379 [main] INFO  (DfSchemaXmlSerializer#processTable():456) - 
+2023-01-10 17:12:30,381 [main] INFO  (DfSchemaXmlSerializer#processSequence():823) - ...Getting sequences
+2023-01-10 17:12:30,386 [main] INFO  (DfSchemaXmlSerializer#serialize():320) - ...Serializing XML:
+2023-01-10 17:12:30,386 [main] INFO  (DfSchemaXmlSerializer#serialize():321) -   filePath = ./schema/project-schema-dbflute_sample.xml
+2023-01-10 17:12:30,387 [main] INFO  (DfSchemaXmlSerializer#serialize():322) -   encoding = UTF-8
+2023-01-10 17:12:30,402 [main] INFO  (DfSchemaXmlSerializer#doLoadNextSchema():1570) - ...Loading next schema (schema diff process)
+2023-01-10 17:12:30,406 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:12:30,536 [main] INFO  (DfSchemaXmlSerializer#doLoadNextSchema():1585) -  -> same as previous (schema diff)
+2023-01-10 17:12:30,537 [main] INFO  (DfDataSourceHandler#destroy():120) - ...closeReally()
+2023-01-10 17:12:30,592 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m01s506ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql (MySQL 8.0.30)
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {JDBC}
+2023-01-10 17:12:32,363 [main] INFO  (TorqueDocumentationTask#begin():193) - +------------------------------------------+
+2023-01-10 17:12:32,370 [main] INFO  (TorqueDocumentationTask#begin():194) - |                                          |
+2023-01-10 17:12:32,370 [main] INFO  (TorqueDocumentationTask#begin():195) - |                   Doc                    |
+2023-01-10 17:12:32,371 [main] INFO  (TorqueDocumentationTask#begin():203) - |                                          |
+2023-01-10 17:12:32,373 [main] INFO  (TorqueDocumentationTask#begin():204) - +------------------------------------------+
+2023-01-10 17:12:32,415 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:12:32,415 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:12:32,418 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:12:32,418 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:12:32,420 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():265) - 
+2023-01-10 17:12:32,420 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():266) - * * * * * * * * * * *
+2023-01-10 17:12:32,423 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():267) - *                   *
+2023-01-10 17:12:32,423 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():268) - *    Schema HTML    *
+2023-01-10 17:12:32,423 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():269) - *                   *
+2023-01-10 17:12:32,423 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():270) - * * * * * * * * * * *
+2023-01-10 17:12:32,501 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:12:32,586 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():62) - /=======================================
+2023-01-10 17:12:32,586 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():63) - ...Initializing additional primary keys.
+2023-01-10 17:12:32,589 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():88) - ==========/
+2023-01-10 17:12:32,590 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():62) - /=======================================
+2023-01-10 17:12:32,590 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():63) - ...Initializing additional unique keys.
+2023-01-10 17:12:32,592 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():83) - ==========/
+2023-01-10 17:12:32,596 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():68) - /=======================================
+2023-01-10 17:12:32,599 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():69) - ...Initializing additional foreign keys.
+2023-01-10 17:12:32,604 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():88) - ==========/
+2023-01-10 17:12:32,636 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:12:32,724 [main] INFO  (DfAbstractTexenTask#fireVelocityProcess():253) - generator.parse("doc/ControlDocument.vm", ctx);
+2023-01-10 17:12:32,776 [main] INFO  (DfFlutistLog4JLogSystem#init():45) - ...Suppressing velocity.log, which is unneeded for also debug
+2023-01-10 17:12:33,019 [main] INFO  (Database#doEnableDocumentOutputDirectory():1241) - ...Setting up documentOutputDirectory: ./output/doc
+2023-01-10 17:12:33,038 [main] INFO  (DfDocumentSelector#doLoadSchemaHistory():242) - ...Loading schema history
+2023-01-10 17:12:33,116 [main] INFO  (DfDocumentSelector#doLoadSchemaHistory():246) -  -> found history: count=4
+2023-01-10 17:12:33,200 [main] INFO  (DfSchemaHtmlDataArrangeQuery#getArrangeQueryTableMap():50) -  
+2023-01-10 17:12:33,211 [main] INFO  (DfSchemaHtmlDataArrangeQuery#getArrangeQueryTableMap():51) - ...Setting up arrange queries for documents (ArrangeQueryDoc)
+2023-01-10 17:12:33,235 [main] INFO  (DfArrangeQueryDocSetupper#doExtractArrangeQuery():106) -  -> no arrange query
+2023-01-10 17:12:33,523 [main] INFO  (DfRefreshResourceProcess#show():295) - /===========================================================================
+2023-01-10 17:12:33,524 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Refreshing [DBFlute-Sample] by http://localhost:8386/
+2023-01-10 17:12:33,545 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Retrying refreshing by default secondary URL http://localhost:8387/
+2023-01-10 17:12:33,577 [main] INFO  (DfRefreshResourceProcess#show():295) - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+2023-01-10 17:12:33,581 [main] INFO  (DfRefreshResourceProcess#show():295) - ==========/
+2023-01-10 17:12:33,599 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m01s257ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {Doc}
+2023-01-10 17:12:38,363 [main] INFO  (TorqueDataModelTask#begin():110) - +------------------------------------------+
+2023-01-10 17:12:38,366 [main] INFO  (TorqueDataModelTask#begin():111) - |                                          |
+2023-01-10 17:12:38,366 [main] INFO  (TorqueDataModelTask#begin():112) - |                 Generate                 |
+2023-01-10 17:12:38,367 [main] INFO  (TorqueDataModelTask#begin():113) - |                                          |
+2023-01-10 17:12:38,369 [main] INFO  (TorqueDataModelTask#begin():114) - +------------------------------------------+
+2023-01-10 17:12:38,418 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:12:38,419 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:12:38,422 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:12:38,425 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:12:38,452 [main] INFO  (TorqueDataModelTask#setupControlTemplate():166) - 
+2023-01-10 17:12:38,453 [main] INFO  (TorqueDataModelTask#setupControlTemplate():167) - ...Using Java control: om/ControlGenerateJava.vm
+2023-01-10 17:12:38,512 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:12:38,573 [main] INFO  (DfAbstractTexenTask#fireVelocityProcess():253) - generator.parse("om/ControlGenerateJava.vm", ctx);
+2023-01-10 17:12:38,584 [main] INFO  (DfFlutistLog4JLogSystem#init():45) - ...Suppressing velocity.log, which is unneeded for also debug
+2023-01-10 17:12:38,821 [main] INFO  (Database#doEnableGenerateOutputDirectory():1209) - ...Setting up generateOutputDirectory: ../src/main/java
+2023-01-10 17:12:38,829 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():62) - /=======================================
+2023-01-10 17:12:38,829 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():63) - ...Initializing additional primary keys.
+2023-01-10 17:12:38,831 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():88) - ==========/
+2023-01-10 17:12:38,832 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():62) - /=======================================
+2023-01-10 17:12:38,832 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():63) - ...Initializing additional unique keys.
+2023-01-10 17:12:38,834 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():83) - ==========/
+2023-01-10 17:12:38,836 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():68) - /=======================================
+2023-01-10 17:12:38,837 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():69) - ...Initializing additional foreign keys.
+2023-01-10 17:12:38,839 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():88) - ==========/
+2023-01-10 17:12:38,856 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:12:38,863 [main] INFO  (DfIncludeQueryInitializer#initializeIncludeQuery():58) - /=============================
+2023-01-10 17:12:38,864 [main] INFO  (DfIncludeQueryInitializer#initializeIncludeQuery():59) - ...Initializing include query.
+2023-01-10 17:12:38,864 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - String
+2023-01-10 17:12:38,865 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - Number
+2023-01-10 17:12:38,865 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - Date
+2023-01-10 17:12:38,865 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():86) -   NotEqual -> []
+2023-01-10 17:12:38,866 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():86) -   InScope -> []
+2023-01-10 17:12:38,866 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():86) -   NotInScope -> []
+2023-01-10 17:12:38,867 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - OrderBy
+2023-01-10 17:12:38,868 [main] INFO  (DfIncludeQueryInitializer#initializeIncludeQuery():61) - ========/
+2023-01-10 17:12:38,886 [main] INFO  (Database#info():2845) - public void parseAllCommon() {
+2023-01-10 17:12:38,889 [main] INFO  (Database#info():2845) -     parse('DBCurrent');
+2023-01-10 17:12:38,899 [main] INFO  (Database#info():2845) -     parse('DBFluteConfig');
+2023-01-10 17:12:38,916 [main] INFO  (Database#info():2845) -     parse('DBFluteInitializer');
+2023-01-10 17:12:38,922 [main] INFO  (Database#info():2845) -     parse('DBMetaInstanceHandler');
+2023-01-10 17:12:38,950 [main] INFO  (Database#info():2845) -     parse('EntityDefinedCommonColumn');
+2023-01-10 17:12:38,957 [main] INFO  (Database#info():2845) -     parse('ImplementedBehaviorSelector');
+2023-01-10 17:12:38,967 [main] INFO  (Database#info():2845) -     parse('ImplementedCommonColumnAutoSetupper');
+2023-01-10 17:12:38,977 [main] INFO  (Database#info():2845) -     parse('ImplementedInvokerAssistant');
+2023-01-10 17:12:38,980 [main] INFO  (Database#info():2845) -     parse('ImplementedSqlClauseCreator');
+2023-01-10 17:12:38,984 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:12:38,986 [main] INFO  (Database#info():2845) - public void parseContainerConfig() {
+2023-01-10 17:12:38,987 [main] INFO  (Database#info():2845) -     parse('org\docksidestage\dbflute\allcommon\DBFluteBeansJavaConfig.java')
+2023-01-10 17:12:39,050 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:12:39,056 [main] INFO  (DfOldClassHandler#info():1045) - public void deleteOldTableClass() {
+2023-01-10 17:12:39,079 [main] INFO  (DfOldClassHandler#info():1045) - }
+2023-01-10 17:12:39,079 [main] INFO  (Database#info():2845) - public void parseTableClass() {
+2023-01-10 17:12:39,080 [main] INFO  (Database#info():2845) -     parse('category');
+2023-01-10 17:12:39,556 [main] INFO  (Database#info():2845) -     parse('expenses');
+2023-01-10 17:12:39,861 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:12:39,861 [main] INFO  (Database#info():2845) -  
+2023-01-10 17:12:39,942 [main] INFO  (DfRefreshResourceProcess#show():295) - /===========================================================================
+2023-01-10 17:12:39,942 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Refreshing [DBFlute-Sample] by http://localhost:8386/
+2023-01-10 17:12:39,950 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Retrying refreshing by default secondary URL http://localhost:8387/
+2023-01-10 17:12:39,952 [main] INFO  (DfRefreshResourceProcess#show():295) - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+2023-01-10 17:12:39,953 [main] INFO  (DfRefreshResourceProcess#show():295) - ==========/
+2023-01-10 17:12:39,965 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m01s616ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {Generate}
+2023-01-10 17:12:41,427 [main] INFO  (DfOutsideSqlTestTask#begin():77) - +------------------------------------------+
+2023-01-10 17:12:41,429 [main] INFO  (DfOutsideSqlTestTask#begin():78) - |                                          |
+2023-01-10 17:12:41,429 [main] INFO  (DfOutsideSqlTestTask#begin():79) - |              OutsideSqlTest              |
+2023-01-10 17:12:41,433 [main] INFO  (DfOutsideSqlTestTask#begin():80) - |                                          |
+2023-01-10 17:12:41,435 [main] INFO  (DfOutsideSqlTestTask#begin():81) - +------------------------------------------+
+2023-01-10 17:12:41,465 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:12:41,465 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:12:41,466 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:12:41,470 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:12:41,515 [main] INFO  (DfSqlFileFireMan#fire():93) - Fired SQL: success=0, failure=0 (in 0 files)
+2023-01-10 17:12:41,529 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m00s108ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+
+ {Checked SQL}
+_/_/_/_/_/_/_/_/_/_/ {OutsideSqlTest}
+2023-01-10 17:12:43,058 [main] INFO  (DfSql2EntityTask#begin():106) - +------------------------------------------+
+2023-01-10 17:12:43,060 [main] INFO  (DfSql2EntityTask#begin():107) - |                                          |
+2023-01-10 17:12:43,060 [main] INFO  (DfSql2EntityTask#begin():108) - |                Sql2Entity                |
+2023-01-10 17:12:43,060 [main] INFO  (DfSql2EntityTask#begin():109) - |                                          |
+2023-01-10 17:12:43,061 [main] INFO  (DfSql2EntityTask#begin():110) - +------------------------------------------+
+2023-01-10 17:12:43,089 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:12:43,089 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:12:43,091 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:12:43,092 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:12:43,115 [main] INFO  (DfSql2EntityTask#setupControlTemplate():177) - 
+2023-01-10 17:12:43,115 [main] INFO  (DfSql2EntityTask#setupControlTemplate():178) - ...Using Java control: om/ControlSql2EntityJava.vm
+2023-01-10 17:12:43,124 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:12:43,215 [main] INFO  (DfSqlFileFireMan#fire():93) - Fired SQL: success=0, failure=0 (in 0 files)
+2023-01-10 17:12:43,278 [main] INFO  (DfSql2EntityTask#initControlContext():311) - 
+2023-01-10 17:12:43,278 [main] INFO  (DfSql2EntityTask#initControlContext():312) - ...Preparing generation of customize-entities and parameter-beans
+2023-01-10 17:12:43,280 [main] INFO  (DfSql2EntityTask#initControlContext():313) - * * * * * * * * * *
+2023-01-10 17:12:43,286 [main] INFO  (DfSql2EntityTask#initControlContext():314) - * CustomizeEntity *
+2023-01-10 17:12:43,286 [main] INFO  (DfSql2EntityTask#initControlContext():315) - * * * * * * * * * *
+2023-01-10 17:12:43,287 [main] INFO  (DfSql2EntityTask#showParameterBean():932) - * * * * * * * * *
+2023-01-10 17:12:43,287 [main] INFO  (DfSql2EntityTask#showParameterBean():933) - * ParameterBean *
+2023-01-10 17:12:43,288 [main] INFO  (DfSql2EntityTask#showParameterBean():934) - * * * * * * * * *
+2023-01-10 17:12:43,293 [main] INFO  (DfAbstractTexenTask#fireVelocityProcess():253) - generator.parse("om/ControlSql2EntityJava.vm", ctx);
+2023-01-10 17:12:43,309 [main] INFO  (DfFlutistLog4JLogSystem#init():45) - ...Suppressing velocity.log, which is unneeded for also debug
+2023-01-10 17:12:43,521 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:12:43,524 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:12:43,538 [main] INFO  (Database#doEnableSql2EntityOutputDirectory():1225) - ...Setting up sql2EntityOutputDirectory: ../src/main/java
+2023-01-10 17:12:43,543 [main] INFO  (DfOldClassHandler#info():1045) - public void deleteOldCustomizeClass() {
+2023-01-10 17:12:43,558 [main] INFO  (DfOldClassHandler#info():1045) - }
+2023-01-10 17:12:43,559 [main] INFO  (Database#info():2845) - public void parseCustomizeEntity() {
+2023-01-10 17:12:43,562 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:12:43,591 [main] INFO  (DfSql2EntityTask#showTargetSqlFileInformation():303) - 
+/- - - - - - - - - - - - - - - - - - - - - - - -
+Target SQL files: 0
+
+- - - - - - - - - -/
+2023-01-10 17:12:43,603 [main] INFO  (DfRefreshResourceProcess#show():295) - /===========================================================================
+2023-01-10 17:12:43,604 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Refreshing [DBFlute-Sample] by http://localhost:8386/
+2023-01-10 17:12:43,606 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Retrying refreshing by default secondary URL http://localhost:8387/
+2023-01-10 17:12:43,608 [main] INFO  (DfRefreshResourceProcess#show():295) - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+2023-01-10 17:12:43,608 [main] INFO  (DfRefreshResourceProcess#show():295) - ==========/
+2023-01-10 17:12:43,612 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m00s575ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {Sql2Entity}
+2023-01-10 17:19:39,746 [main] INFO  (DfReplaceSchemaTask#begin():94) - +------------------------------------------+
+2023-01-10 17:19:39,746 [main] INFO  (DfReplaceSchemaTask#begin():95) - |                                          |
+2023-01-10 17:19:39,746 [main] INFO  (DfReplaceSchemaTask#begin():96) - |              ReplaceSchema               |
+2023-01-10 17:19:39,759 [main] INFO  (DfReplaceSchemaTask#begin():104) - |                                          |
+2023-01-10 17:19:39,760 [main] INFO  (DfReplaceSchemaTask#begin():105) - +------------------------------------------+
+2023-01-10 17:19:39,763 [main] INFO  (DfReplaceSchemaTask#waitBeforeReps():423) - ...Waiting for your GO SIGN from stdin before ReplaceSchema:
+2023-01-10 17:19:42,167 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:19:42,168 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:19:42,168 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:19:42,171 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:19:42,183 [main] INFO  (DfDataSourceHandler#createConnection():166) - ...Connecting to database by data source:
+2023-01-10 17:19:42,929 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():233) -   product = MySQL 8.0.30
+2023-01-10 17:19:42,931 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():234) -   driver  = MySQL Connector Java mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e ) for JDBC 4.0
+2023-01-10 17:19:42,954 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():253) - 
+2023-01-10 17:19:42,955 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():254) - * * * * * * * * * * *
+2023-01-10 17:19:42,955 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():255) - *                   *
+2023-01-10 17:19:42,958 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():256) - * Initialize Schema *
+2023-01-10 17:19:42,959 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():257) - *                   *
+2023-01-10 17:19:42,959 [main] INFO  (DfCreateSchemaProcess#initializeSchemaMainDrop():258) - * * * * * * * * * * *
+2023-01-10 17:19:42,985 [main] INFO  (DfTableExtractor#doGetTableList():66) - ...Getting tables:
+2023-01-10 17:19:42,988 [main] INFO  (DfTableExtractor#doGetTableList():67) -   schema = {dbflute_sample.dbflute_sample as main}
+2023-01-10 17:19:42,988 [main] INFO  (DfTableExtractor#doGetTableList():68) -   types  = [TABLE, VIEW]
+2023-01-10 17:19:43,089 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - truncate table dbflute_sample.expenses
+2023-01-10 17:19:43,109 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - alter table dbflute_sample.expenses drop foreign key expenses_ibfk_1
+2023-01-10 17:19:43,124 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - drop table dbflute_sample.category
+2023-01-10 17:19:43,138 [main] INFO  (DfSchemaInitializerJdbc#logReplaceSql():614) - drop table dbflute_sample.expenses
+2023-01-10 17:19:43,201 [main] INFO  (DfCreateSchemaProcess#createSchema():293) - 
+2023-01-10 17:19:43,204 [main] INFO  (DfCreateSchemaProcess#createSchema():294) - * * * * * * * * *
+2023-01-10 17:19:43,204 [main] INFO  (DfCreateSchemaProcess#createSchema():295) - *               *
+2023-01-10 17:19:43,209 [main] INFO  (DfCreateSchemaProcess#createSchema():296) - * Create Schema *
+2023-01-10 17:19:43,209 [main] INFO  (DfCreateSchemaProcess#createSchema():297) - *               *
+2023-01-10 17:19:43,209 [main] INFO  (DfCreateSchemaProcess#createSchema():298) - * * * * * * * * *
+2023-01-10 17:19:43,223 [main] INFO  (DfSqlFileFireMan#fire():68) - ...Firing: replace-schema.sql
+2023-01-10 17:19:43,237 [main] INFO  (DfSqlFileRunnerBase#traceSql():168) - 
+create table category(
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     category_name VARCHAR(15) NOT NULL,
+     category_flag TINYINT(1) NOT NULL)
+2023-01-10 17:19:43,297 [main] INFO  (DfSqlFileRunnerBase#traceSql():168) - 
+-- category_flag 支出：１　収入：２
+     
+     create table expenses(
+     id INT AUTO_INCREMENT PRIMARY KEY,
+     date DATE NOT NULL,
+     category_id INT NOT NULL,
+     income INT,
+     expenditure INT,
+     detail VARCHAR(20),
+     FOREIGN KEY(category_id)
+     REFERENCES category(id))
+2023-01-10 17:19:43,336 [main] INFO  (DfSqlFileRunnerBase#traceSql():168) - 
+INSERT INTO category(category_name, category_flag) 
+     VALUES("家賃",1),("光熱費",1),("食費",1),("外食費",1),("日用品",1),
+     ("交通費",1),("衣服",1),("交際費",1),("趣味",1),("その他",1),
+     ("給料",2),("その他",2)
+2023-01-10 17:19:43,347 [main] INFO  (DfSqlFileRunnerBase#traceResult():172) -  -> success=3 failure=0
+2023-01-10 17:19:43,348 [main] INFO  (DfSqlFileFireMan#fire():93) - Create Schema: success=3, failure=0 (in 1 files)
+2023-01-10 17:19:43,398 [main] INFO  (DfLoadDataProcess#execute():134) - 
+2023-01-10 17:19:43,401 [main] INFO  (DfLoadDataProcess#execute():135) - * * * * * * * * * * *
+2023-01-10 17:19:43,401 [main] INFO  (DfLoadDataProcess#execute():136) - *                   *
+2023-01-10 17:19:43,403 [main] INFO  (DfLoadDataProcess#execute():137) - * Load Data         *
+2023-01-10 17:19:43,406 [main] INFO  (DfLoadDataProcess#execute():138) - *                   *
+2023-01-10 17:19:43,407 [main] INFO  (DfLoadDataProcess#execute():139) - * * * * * * * * * * *
+2023-01-10 17:19:43,447 [main] INFO  (DfTakeFinallyProcess#takeFinally():244) - 
+2023-01-10 17:19:43,447 [main] INFO  (DfTakeFinallyProcess#takeFinally():245) - * * * * * * * **
+2023-01-10 17:19:43,449 [main] INFO  (DfTakeFinallyProcess#takeFinally():246) - *              *
+2023-01-10 17:19:43,451 [main] INFO  (DfTakeFinallyProcess#takeFinally():247) - * Take Finally *
+2023-01-10 17:19:43,451 [main] INFO  (DfTakeFinallyProcess#takeFinally():248) - *              *
+2023-01-10 17:19:43,452 [main] INFO  (DfTakeFinallyProcess#takeFinally():249) - * * * * * * * **
+2023-01-10 17:19:43,465 [main] INFO  (DfSqlFileFireMan#fire():68) - ...Firing: take-finally.sql
+2023-01-10 17:19:43,465 [main] INFO  (DfSqlFileRunnerBase#traceResult():172) -  -> success=0 failure=0
+2023-01-10 17:19:43,468 [main] INFO  (DfSqlFileFireMan#fire():93) - Take Finally: success=0, failure=0 (in 1 files)
+2023-01-10 17:19:43,472 [main] INFO  (DfDataSourceHandler#destroy():120) - ...closeReally()
+2023-01-10 17:19:43,506 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m03s785ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql (MySQL 8.0.30)
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+
+ Create Schema: success=3, failure=0 (in 1 files) - 00m00s400ms
+  (Initialize Schema) - 00m00s249ms
+  (Create Schema) - 00m00s139ms
+  o replace-schema.sql
+
+ Load Data: *empty loading - 00m00s035ms
+  - (no data file)
+
+ Take Finally: success=0, failure=0 (in 1 files) - 00m00s023ms
+  o take-finally.sql
+_/_/_/_/_/_/_/_/_/_/ {ReplaceSchema}
+2023-01-10 17:19:52,400 [main] INFO  (TorqueJDBCTransformTask#begin():104) - +------------------------------------------+
+2023-01-10 17:19:52,404 [main] INFO  (TorqueJDBCTransformTask#begin():105) - |                                          |
+2023-01-10 17:19:52,405 [main] INFO  (TorqueJDBCTransformTask#begin():106) - |                   JDBC                   |
+2023-01-10 17:19:52,405 [main] INFO  (TorqueJDBCTransformTask#begin():107) - |                                          |
+2023-01-10 17:19:52,406 [main] INFO  (TorqueJDBCTransformTask#begin():108) - +------------------------------------------+
+2023-01-10 17:19:52,449 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:19:52,450 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:19:52,456 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:19:52,456 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:19:52,510 [main] INFO  (DfSchemaXmlSerializer#serialize():305) - 
+2023-01-10 17:19:52,510 [main] INFO  (DfSchemaXmlSerializer#serialize():306) - ...Starting to process JDBC to SchemaXML
+2023-01-10 17:19:52,512 [main] INFO  (DfSchemaXmlSerializer#doLoadPreviousSchema():1559) - ...Loading previous schema (schema diff process)
+2023-01-10 17:19:52,525 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:19:52,622 [main] INFO  (DfSchemaXmlSerializer#generateXML():379) - ...Getting DB connection
+2023-01-10 17:19:52,631 [main] INFO  (DfDataSourceHandler#createConnection():166) - ...Connecting to database by data source:
+2023-01-10 17:19:53,471 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():233) -   product = MySQL 8.0.30
+2023-01-10 17:19:53,473 [main] INFO  (DfDataSourceHandler#setupConnectionMetaInfo():234) -   driver  = MySQL Connector Java mysql-connector-java-5.1.46 ( Revision: 9cc87a48e75c2d2e87c1a293b2862ce651cb256e ) for JDBC 4.0
+2023-01-10 17:19:53,475 [main] INFO  (DfSchemaXmlSerializer#generateXML():382) - ...Getting DB meta data
+2023-01-10 17:19:53,477 [main] INFO  (DfTableExtractor#doGetTableList():66) - ...Getting tables:
+2023-01-10 17:19:53,478 [main] INFO  (DfTableExtractor#doGetTableList():67) -   schema = {dbflute_sample.dbflute_sample as main}
+2023-01-10 17:19:53,478 [main] INFO  (DfTableExtractor#doGetTableList():68) -   types  = [TABLE, VIEW]
+2023-01-10 17:19:53,522 [main] INFO  (DfDbCommentExtractorBase#doSelectUserTabComments():121) - select table_type as OBJECT_TYPE, table_name as TABLE_NAME, table_comment as COMMENTS from information_schema.tables where table_schema = 'dbflute_sample' order by table_name asc
+2023-01-10 17:19:53,532 [main] INFO  (DfDbCommentExtractorBase#doSelectUserColComments():168) - select table_name as TABLE_NAME, column_name as COLUMN_NAME, column_comment as COMMENTS from information_schema.columns where table_schema = 'dbflute_sample' order by table_name asc, column_name asc
+2023-01-10 17:19:53,547 [main] INFO  (DfDatetimePrecisionExtractorMySQL#extractDatetimePrecisionMap():59) - select TABLE_NAME, COLUMN_NAME, DATETIME_PRECISION from INFORMATION_SCHEMA.COLUMNS where TABLE_SCHEMA = 'dbflute_sample' and DATA_TYPE = 'datetime'
+2023-01-10 17:19:53,574 [main] INFO  (DfSchemaXmlSerializer#processTable():438) - 
+2023-01-10 17:19:53,575 [main] INFO  (DfSchemaXmlSerializer#processTable():439) - $ /= = = = = = = = = = = = = = = = = = = = = = = = = =
+2023-01-10 17:19:53,580 [main] INFO  (DfSchemaXmlSerializer#processTable():440) - $ [Table List]
+2023-01-10 17:19:53,581 [main] INFO  (DfSchemaXmlSerializer#doProcessTable():520) - $ dbflute_sample.category(TABLE)
+2023-01-10 17:19:53,659 [main] INFO  (DfSchemaXmlSerializer#doProcessTable():520) - $ dbflute_sample.expenses(TABLE)
+2023-01-10 17:19:53,687 [main] INFO  (DfSchemaXmlSerializer#processTable():452) - $ 
+2023-01-10 17:19:53,687 [main] INFO  (DfSchemaXmlSerializer#processTable():453) - $ [Table Count]
+2023-01-10 17:19:53,692 [main] INFO  (DfSchemaXmlSerializer#processTable():454) - $ 2
+2023-01-10 17:19:53,692 [main] INFO  (DfSchemaXmlSerializer#processTable():455) - $ = = = = = = = = = =/
+2023-01-10 17:19:53,694 [main] INFO  (DfSchemaXmlSerializer#processTable():456) - 
+2023-01-10 17:19:53,694 [main] INFO  (DfSchemaXmlSerializer#processSequence():823) - ...Getting sequences
+2023-01-10 17:19:53,702 [main] INFO  (DfSchemaXmlSerializer#serialize():320) - ...Serializing XML:
+2023-01-10 17:19:53,702 [main] INFO  (DfSchemaXmlSerializer#serialize():321) -   filePath = ./schema/project-schema-dbflute_sample.xml
+2023-01-10 17:19:53,702 [main] INFO  (DfSchemaXmlSerializer#serialize():322) -   encoding = UTF-8
+2023-01-10 17:19:53,725 [main] INFO  (DfSchemaXmlSerializer#doLoadNextSchema():1570) - ...Loading next schema (schema diff process)
+2023-01-10 17:19:53,729 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:19:53,854 [main] INFO  (DfSchemaXmlSerializer#doLoadNextSchema():1575) -  -> different from previous (schema diff)
+2023-01-10 17:19:53,854 [main] INFO  (DfSchemaXmlSerializer#doLoadNextSchema():1577) - ...Serializing schema-diff:
+2023-01-10 17:19:53,854 [main] INFO  (DfSchemaXmlSerializer#doLoadNextSchema():1578) -   filePath = ./schema/project-history-dbflute_sample.diffmap
+2023-01-10 17:19:53,871 [main] INFO  (DfDataSourceHandler#destroy():120) - ...closeReally()
+2023-01-10 17:19:53,928 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m01s546ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql (MySQL 8.0.30)
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {JDBC}
+2023-01-10 17:19:55,855 [main] INFO  (TorqueDocumentationTask#begin():193) - +------------------------------------------+
+2023-01-10 17:19:55,857 [main] INFO  (TorqueDocumentationTask#begin():194) - |                                          |
+2023-01-10 17:19:55,857 [main] INFO  (TorqueDocumentationTask#begin():195) - |                   Doc                    |
+2023-01-10 17:19:55,861 [main] INFO  (TorqueDocumentationTask#begin():203) - |                                          |
+2023-01-10 17:19:55,861 [main] INFO  (TorqueDocumentationTask#begin():204) - +------------------------------------------+
+2023-01-10 17:19:55,915 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:19:55,917 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:19:55,917 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:19:55,926 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:19:55,929 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():265) - 
+2023-01-10 17:19:55,930 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():266) - * * * * * * * * * * *
+2023-01-10 17:19:55,931 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():267) - *                   *
+2023-01-10 17:19:55,932 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():268) - *    Schema HTML    *
+2023-01-10 17:19:55,933 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():269) - *                   *
+2023-01-10 17:19:55,933 [main] INFO  (TorqueDocumentationTask#processSchemaHtml():270) - * * * * * * * * * * *
+2023-01-10 17:19:55,999 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:19:56,088 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():62) - /=======================================
+2023-01-10 17:19:56,089 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():63) - ...Initializing additional primary keys.
+2023-01-10 17:19:56,091 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():88) - ==========/
+2023-01-10 17:19:56,093 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():62) - /=======================================
+2023-01-10 17:19:56,094 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():63) - ...Initializing additional unique keys.
+2023-01-10 17:19:56,096 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():83) - ==========/
+2023-01-10 17:19:56,098 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():68) - /=======================================
+2023-01-10 17:19:56,098 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():69) - ...Initializing additional foreign keys.
+2023-01-10 17:19:56,100 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():88) - ==========/
+2023-01-10 17:19:56,125 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:19:56,230 [main] INFO  (DfAbstractTexenTask#fireVelocityProcess():253) - generator.parse("doc/ControlDocument.vm", ctx);
+2023-01-10 17:19:56,262 [main] INFO  (DfFlutistLog4JLogSystem#init():45) - ...Suppressing velocity.log, which is unneeded for also debug
+2023-01-10 17:19:56,552 [main] INFO  (Database#doEnableDocumentOutputDirectory():1241) - ...Setting up documentOutputDirectory: ./output/doc
+2023-01-10 17:19:56,565 [main] INFO  (DfDocumentSelector#doLoadSchemaHistory():242) - ...Loading schema history
+2023-01-10 17:19:56,616 [main] INFO  (DfDocumentSelector#doLoadSchemaHistory():246) -  -> found history: count=5
+2023-01-10 17:19:56,690 [main] INFO  (DfSchemaHtmlDataArrangeQuery#getArrangeQueryTableMap():50) -  
+2023-01-10 17:19:56,690 [main] INFO  (DfSchemaHtmlDataArrangeQuery#getArrangeQueryTableMap():51) - ...Setting up arrange queries for documents (ArrangeQueryDoc)
+2023-01-10 17:19:56,711 [main] INFO  (DfArrangeQueryDocSetupper#doExtractArrangeQuery():106) -  -> no arrange query
+2023-01-10 17:19:56,908 [main] INFO  (DfRefreshResourceProcess#show():295) - /===========================================================================
+2023-01-10 17:19:56,908 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Refreshing [DBFlute-Sample] by http://localhost:8386/
+2023-01-10 17:19:56,924 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Retrying refreshing by default secondary URL http://localhost:8387/
+2023-01-10 17:19:56,924 [main] INFO  (DfRefreshResourceProcess#show():295) - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+2023-01-10 17:19:56,927 [main] INFO  (DfRefreshResourceProcess#show():295) - ==========/
+2023-01-10 17:19:56,932 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m01s103ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {Doc}
+2023-01-10 17:20:01,701 [main] INFO  (TorqueDataModelTask#begin():110) - +------------------------------------------+
+2023-01-10 17:20:01,703 [main] INFO  (TorqueDataModelTask#begin():111) - |                                          |
+2023-01-10 17:20:01,704 [main] INFO  (TorqueDataModelTask#begin():112) - |                 Generate                 |
+2023-01-10 17:20:01,706 [main] INFO  (TorqueDataModelTask#begin():113) - |                                          |
+2023-01-10 17:20:01,707 [main] INFO  (TorqueDataModelTask#begin():114) - +------------------------------------------+
+2023-01-10 17:20:01,747 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:20:01,747 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:20:01,749 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:20:01,750 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:20:01,778 [main] INFO  (TorqueDataModelTask#setupControlTemplate():166) - 
+2023-01-10 17:20:01,779 [main] INFO  (TorqueDataModelTask#setupControlTemplate():167) - ...Using Java control: om/ControlGenerateJava.vm
+2023-01-10 17:20:01,843 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:20:01,913 [main] INFO  (DfAbstractTexenTask#fireVelocityProcess():253) - generator.parse("om/ControlGenerateJava.vm", ctx);
+2023-01-10 17:20:01,929 [main] INFO  (DfFlutistLog4JLogSystem#init():45) - ...Suppressing velocity.log, which is unneeded for also debug
+2023-01-10 17:20:02,174 [main] INFO  (Database#doEnableGenerateOutputDirectory():1209) - ...Setting up generateOutputDirectory: ../src/main/java
+2023-01-10 17:20:02,181 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():62) - /=======================================
+2023-01-10 17:20:02,181 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():63) - ...Initializing additional primary keys.
+2023-01-10 17:20:02,183 [main] INFO  (DfAdditionalPrimaryKeyInitializer#initializeAdditionalPrimaryKey():88) - ==========/
+2023-01-10 17:20:02,184 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():62) - /=======================================
+2023-01-10 17:20:02,184 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():63) - ...Initializing additional unique keys.
+2023-01-10 17:20:02,186 [main] INFO  (DfAdditionalUniqueKeyInitializer#initializeAdditionalUniqueKey():83) - ==========/
+2023-01-10 17:20:02,188 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():68) - /=======================================
+2023-01-10 17:20:02,189 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():69) - ...Initializing additional foreign keys.
+2023-01-10 17:20:02,192 [main] INFO  (DfAdditionalForeignKeyInitializer#initializeAdditionalForeignKey():88) - ==========/
+2023-01-10 17:20:02,211 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:20:02,220 [main] INFO  (DfIncludeQueryInitializer#initializeIncludeQuery():58) - /=============================
+2023-01-10 17:20:02,220 [main] INFO  (DfIncludeQueryInitializer#initializeIncludeQuery():59) - ...Initializing include query.
+2023-01-10 17:20:02,221 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - String
+2023-01-10 17:20:02,225 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - Number
+2023-01-10 17:20:02,225 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - Date
+2023-01-10 17:20:02,231 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():86) -   NotEqual -> []
+2023-01-10 17:20:02,231 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():86) -   InScope -> []
+2023-01-10 17:20:02,232 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():86) -   NotInScope -> []
+2023-01-10 17:20:02,232 [main] INFO  (DfIncludeQueryInitializer#checkQueryMap():81) - OrderBy
+2023-01-10 17:20:02,232 [main] INFO  (DfIncludeQueryInitializer#initializeIncludeQuery():61) - ========/
+2023-01-10 17:20:02,253 [main] INFO  (Database#info():2845) - public void parseAllCommon() {
+2023-01-10 17:20:02,258 [main] INFO  (Database#info():2845) -     parse('DBCurrent');
+2023-01-10 17:20:02,269 [main] INFO  (Database#info():2845) -     parse('DBFluteConfig');
+2023-01-10 17:20:02,301 [main] INFO  (Database#info():2845) -     parse('DBFluteInitializer');
+2023-01-10 17:20:02,326 [main] INFO  (Database#info():2845) -     parse('DBMetaInstanceHandler');
+2023-01-10 17:20:02,357 [main] INFO  (Database#info():2845) -     parse('EntityDefinedCommonColumn');
+2023-01-10 17:20:02,359 [main] INFO  (Database#info():2845) -     parse('ImplementedBehaviorSelector');
+2023-01-10 17:20:02,366 [main] INFO  (Database#info():2845) -     parse('ImplementedCommonColumnAutoSetupper');
+2023-01-10 17:20:02,370 [main] INFO  (Database#info():2845) -     parse('ImplementedInvokerAssistant');
+2023-01-10 17:20:02,374 [main] INFO  (Database#info():2845) -     parse('ImplementedSqlClauseCreator');
+2023-01-10 17:20:02,379 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:20:02,380 [main] INFO  (Database#info():2845) - public void parseContainerConfig() {
+2023-01-10 17:20:02,381 [main] INFO  (Database#info():2845) -     parse('org\docksidestage\dbflute\allcommon\DBFluteBeansJavaConfig.java')
+2023-01-10 17:20:02,399 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:20:02,406 [main] INFO  (DfOldClassHandler#info():1045) - public void deleteOldTableClass() {
+2023-01-10 17:20:02,433 [main] INFO  (DfOldClassHandler#info():1045) - }
+2023-01-10 17:20:02,433 [main] INFO  (Database#info():2845) - public void parseTableClass() {
+2023-01-10 17:20:02,433 [main] INFO  (Database#info():2845) -     parse('category');
+2023-01-10 17:20:02,780 [main] INFO  (Database#info():2845) -     parse('expenses');
+2023-01-10 17:20:02,995 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:20:03,002 [main] INFO  (Database#info():2845) -  
+2023-01-10 17:20:03,064 [main] INFO  (DfRefreshResourceProcess#show():295) - /===========================================================================
+2023-01-10 17:20:03,064 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Refreshing [DBFlute-Sample] by http://localhost:8386/
+2023-01-10 17:20:03,073 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Retrying refreshing by default secondary URL http://localhost:8387/
+2023-01-10 17:20:03,080 [main] INFO  (DfRefreshResourceProcess#show():295) - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+2023-01-10 17:20:03,080 [main] INFO  (DfRefreshResourceProcess#show():295) - ==========/
+2023-01-10 17:20:03,088 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m01s403ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {Generate}
+2023-01-10 17:20:04,619 [main] INFO  (DfOutsideSqlTestTask#begin():77) - +------------------------------------------+
+2023-01-10 17:20:04,622 [main] INFO  (DfOutsideSqlTestTask#begin():78) - |                                          |
+2023-01-10 17:20:04,623 [main] INFO  (DfOutsideSqlTestTask#begin():79) - |              OutsideSqlTest              |
+2023-01-10 17:20:04,624 [main] INFO  (DfOutsideSqlTestTask#begin():80) - |                                          |
+2023-01-10 17:20:04,624 [main] INFO  (DfOutsideSqlTestTask#begin():81) - +------------------------------------------+
+2023-01-10 17:20:04,657 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:20:04,657 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:20:04,659 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:20:04,659 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:20:04,704 [main] INFO  (DfSqlFileFireMan#fire():93) - Fired SQL: success=0, failure=0 (in 0 files)
+2023-01-10 17:20:04,715 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m00s108ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+
+ {Checked SQL}
+_/_/_/_/_/_/_/_/_/_/ {OutsideSqlTest}
+2023-01-10 17:20:06,236 [main] INFO  (DfSql2EntityTask#begin():106) - +------------------------------------------+
+2023-01-10 17:20:06,238 [main] INFO  (DfSql2EntityTask#begin():107) - |                                          |
+2023-01-10 17:20:06,238 [main] INFO  (DfSql2EntityTask#begin():108) - |                Sql2Entity                |
+2023-01-10 17:20:06,239 [main] INFO  (DfSql2EntityTask#begin():109) - |                                          |
+2023-01-10 17:20:06,239 [main] INFO  (DfSql2EntityTask#begin():110) - +------------------------------------------+
+2023-01-10 17:20:06,270 [main] INFO  (DfDataSourceHandler#prepare():78) - ...Preparing data source:
+2023-01-10 17:20:06,271 [main] INFO  (DfDataSourceHandler#prepare():79) -   driver = com.mysql.jdbc.Driver
+2023-01-10 17:20:06,273 [main] INFO  (DfDataSourceHandler#prepare():80) -   url    = jdbc:mysql://localhost:3306/dbflute_sample
+2023-01-10 17:20:06,275 [main] INFO  (DfDataSourceHandler#prepare():81) -   user   = root
+2023-01-10 17:20:06,297 [main] INFO  (DfSql2EntityTask#setupControlTemplate():177) - 
+2023-01-10 17:20:06,297 [main] INFO  (DfSql2EntityTask#setupControlTemplate():178) - ...Using Java control: om/ControlSql2EntityJava.vm
+2023-01-10 17:20:06,310 [main] INFO  (DTDResolver#resolveEntity():195) - ...Resolving XML by database.dtd in same package
+2023-01-10 17:20:06,381 [main] INFO  (DfSqlFileFireMan#fire():93) - Fired SQL: success=0, failure=0 (in 0 files)
+2023-01-10 17:20:06,437 [main] INFO  (DfSql2EntityTask#initControlContext():311) - 
+2023-01-10 17:20:06,437 [main] INFO  (DfSql2EntityTask#initControlContext():312) - ...Preparing generation of customize-entities and parameter-beans
+2023-01-10 17:20:06,437 [main] INFO  (DfSql2EntityTask#initControlContext():313) - * * * * * * * * * *
+2023-01-10 17:20:06,440 [main] INFO  (DfSql2EntityTask#initControlContext():314) - * CustomizeEntity *
+2023-01-10 17:20:06,440 [main] INFO  (DfSql2EntityTask#initControlContext():315) - * * * * * * * * * *
+2023-01-10 17:20:06,442 [main] INFO  (DfSql2EntityTask#showParameterBean():932) - * * * * * * * * *
+2023-01-10 17:20:06,442 [main] INFO  (DfSql2EntityTask#showParameterBean():933) - * ParameterBean *
+2023-01-10 17:20:06,442 [main] INFO  (DfSql2EntityTask#showParameterBean():934) - * * * * * * * * *
+2023-01-10 17:20:06,447 [main] INFO  (DfAbstractTexenTask#fireVelocityProcess():253) - generator.parse("om/ControlSql2EntityJava.vm", ctx);
+2023-01-10 17:20:06,459 [main] INFO  (DfFlutistLog4JLogSystem#init():45) - ...Suppressing velocity.log, which is unneeded for also debug
+2023-01-10 17:20:06,671 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:20:06,675 [main] INFO  (DfClsDeploymentInitializer#initializeClassificationDeployment():67) - ...Initializing ClassificationDeployment: project=dbflute_sample
+2023-01-10 17:20:06,682 [main] INFO  (Database#doEnableSql2EntityOutputDirectory():1225) - ...Setting up sql2EntityOutputDirectory: ../src/main/java
+2023-01-10 17:20:06,686 [main] INFO  (DfOldClassHandler#info():1045) - public void deleteOldCustomizeClass() {
+2023-01-10 17:20:06,716 [main] INFO  (DfOldClassHandler#info():1045) - }
+2023-01-10 17:20:06,716 [main] INFO  (Database#info():2845) - public void parseCustomizeEntity() {
+2023-01-10 17:20:06,721 [main] INFO  (Database#info():2845) - }
+2023-01-10 17:20:06,753 [main] INFO  (DfSql2EntityTask#showTargetSqlFileInformation():303) - 
+/- - - - - - - - - - - - - - - - - - - - - - - -
+Target SQL files: 0
+
+- - - - - - - - - -/
+2023-01-10 17:20:06,765 [main] INFO  (DfRefreshResourceProcess#show():295) - /===========================================================================
+2023-01-10 17:20:06,765 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Refreshing [DBFlute-Sample] by http://localhost:8386/
+2023-01-10 17:20:06,770 [main] INFO  (DfRefreshResourceProcess#show():295) - ...Retrying refreshing by default secondary URL http://localhost:8387/
+2023-01-10 17:20:06,771 [main] INFO  (DfRefreshResourceProcess#show():295) - Failed to refresh the resources (continued): url=http://localhost:8386/, cause=ConnectException(Connection refused: connect)
+2023-01-10 17:20:06,771 [main] INFO  (DfRefreshResourceProcess#show():295) - ==========/
+2023-01-10 17:20:06,777 [main] INFO  (DfDBFluteTaskUtil#logFinalMessage():139) - 
+_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/_/
+[Final Message]: 00m00s557ms
+
+  DBFLUTE_CLIENT: {dbflute_sample}
+    database  = mysql
+    language  = java
+    container = spring
+    package   = org.docksidestage.dbflute
+
+  DBFLUTE_ENVIRONMENT_TYPE: {}
+    driver = com.mysql.jdbc.Driver
+    url    = jdbc:mysql://localhost:3306/dbflute_sample
+    schema = {dbflute_sample.dbflute_sample as main}
+    user   = root
+    props  = {}
+    additionalSchema = 
+    repsEnvType      = ut
+    refreshProject   = $$AutoDetect$$
+_/_/_/_/_/_/_/_/_/_/ {Sql2Entity}

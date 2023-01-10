@@ -247,7 +247,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as equal. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_Equal(String categoryName) {
@@ -260,7 +260,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as notEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_NotEqual(String categoryName) {
@@ -273,7 +273,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as greaterThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_GreaterThan(String categoryName) {
@@ -282,7 +282,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as lessThan. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_LessThan(String categoryName) {
@@ -291,7 +291,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as greaterEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_GreaterEqual(String categoryName) {
@@ -300,7 +300,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullOrEmptyIgnored, OnlyOnceRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as lessEqual. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_LessEqual(String categoryName) {
@@ -309,7 +309,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryNameList The collection of categoryName as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_InScope(Collection<String> categoryNameList) {
@@ -322,7 +322,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in ('a', 'b')}. And NullOrEmptyIgnored, NullOrEmptyElementIgnored, SeveralRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryNameList The collection of categoryName as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setCategoryName_NotInScope(Collection<String> categoryNameList) {
@@ -335,7 +335,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)} <br>
+     * category_name: {NotNull, VARCHAR(15)} <br>
      * <pre>e.g. setCategoryName_LikeSearch("xxx", op <span style="color: #90226C; font-weight: bold"><span style="font-size: 120%">-</span>&gt;</span> op.<span style="color: #CC4747">likeContain()</span>);</pre>
      * @param categoryName The value of categoryName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
@@ -346,7 +346,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * LikeSearch with various options. (versatile) {like '%xxx%' escape ...}. And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)} <br>
+     * category_name: {NotNull, VARCHAR(15)} <br>
      * <pre>e.g. setCategoryName_LikeSearch("xxx", new <span style="color: #CC4747">LikeSearchOption</span>().likeContain());</pre>
      * @param categoryName The value of categoryName as likeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of like-search. (NotNull)
@@ -358,7 +358,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param opLambda The callback for option of like-search. (NotNull)
      */
@@ -369,7 +369,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
     /**
      * NotLikeSearch with various options. (versatile) {not like 'xxx%' escape ...} <br>
      * And NullOrEmptyIgnored, SeveralRegistered. <br>
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @param categoryName The value of categoryName as notLikeSearch. (basically NotNull, NotEmpty: error as default, or no condition as option)
      * @param likeSearchOption The option of not-like-search. (NotNull)
      */

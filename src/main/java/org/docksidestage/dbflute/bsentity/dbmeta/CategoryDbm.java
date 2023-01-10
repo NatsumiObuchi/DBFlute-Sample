@@ -75,7 +75,7 @@ public class CategoryDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnId() { return _columnId; }
     /**
-     * category_name: {UQ, NotNull, VARCHAR(15)}
+     * category_name: {NotNull, VARCHAR(15)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnCategoryName() { return _columnCategoryName; }
@@ -104,11 +104,6 @@ public class CategoryDbm extends AbstractDBMeta {
     protected UniqueInfo cpui() { return hpcpui(columnId()); }
     public boolean hasPrimaryKey() { return true; }
     public boolean hasCompoundPrimaryKey() { return false; }
-
-    // -----------------------------------------------------
-    //                                        Unique Element
-    //                                        --------------
-    public UniqueInfo uniqueOf() { return hpcui(columnCategoryName()); }
 
     // ===================================================================================
     //                                                                       Relation Info
