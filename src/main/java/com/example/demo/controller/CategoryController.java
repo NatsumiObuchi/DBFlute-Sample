@@ -1,9 +1,10 @@
 package com.example.demo.controller;
 
+import com.example.demo.cbean.CategoryCB;
+import com.example.demo.exbhv.CategoryBhv;
+import com.example.demo.exentity.Category;
+
 import org.dbflute.optional.OptionalEntity;
-import org.docksidestage.dbflute.cbean.CategoryCB;
-import org.docksidestage.dbflute.exbhv.CategoryBhv;
-import org.docksidestage.dbflute.exentity.Category;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
