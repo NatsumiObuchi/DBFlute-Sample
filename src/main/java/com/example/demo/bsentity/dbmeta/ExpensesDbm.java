@@ -71,7 +71,7 @@ public class ExpensesDbm extends AbstractDBMeta {
     protected final String _tableDbName = "expenses";
     protected final String _tableDispName = "expenses";
     protected final String _tablePropertyName = "expenses";
-    protected final TableSqlName _tableSqlName = new TableSqlName("dbflute_sample.expenses", _tableDbName);
+    protected final TableSqlName _tableSqlName = new TableSqlName("expenses", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTableDispName() { return _tableDispName; }

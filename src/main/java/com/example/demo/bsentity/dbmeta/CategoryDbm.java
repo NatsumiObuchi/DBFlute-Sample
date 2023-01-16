@@ -55,7 +55,7 @@ public class CategoryDbm extends AbstractDBMeta {
     protected final String _tableDbName = "category";
     protected final String _tableDispName = "category";
     protected final String _tablePropertyName = "category";
-    protected final TableSqlName _tableSqlName = new TableSqlName("dbflute_sample.category", _tableDbName);
+    protected final TableSqlName _tableSqlName = new TableSqlName("category", _tableDbName);
     { _tableSqlName.xacceptFilter(DBFluteConfig.getInstance().getTableSqlNameFilter()); }
     public String getTableDbName() { return _tableDbName; }
     public String getTableDispName() { return _tableDispName; }
