@@ -23,13 +23,18 @@ public class CategoryController {
 	@RequestMapping("/top")
 	public String test() throws Exception{
 	
+		int count = categoryBhv.selectCount(cb -> {
+			cb.query().setId_IsNotNull();
+		});
+			System.out.println(count);	
+	
 
 //		１．失敗（エラー：Not found the invoker of behavior command in the behavior!）
-		Integer categoryId = 1;
-		categoryBhv.selectEntity(cb -> cb.acceptPK(categoryId)).alwaysPresent(cat -> {
-            String categoryName = cat.getCategoryName();
-            System.out.println(categoryName);
-		});
+//		Integer categoryId = 1;
+//		categoryBhv.selectEntity(cb -> cb.acceptPK(categoryId)).alwaysPresent(cat -> {
+//            String categoryName = cat.getCategoryName();
+//            System.out.println(categoryName);
+//		});
             
 		
 //		2.失敗 Bhvのメソッドの引数はラムダで渡さなきゃいけない・・・
