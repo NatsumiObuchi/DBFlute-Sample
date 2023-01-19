@@ -73,7 +73,7 @@ public class CategoryCIQ extends AbstractBsCategoryCQ {
     public String keepId_QueryDerivedReferrer_ExpensesListParameter(Object vl)
     { throwIICBOE("(Query)DerivedReferrer"); return null; }
     protected ConditionValue xgetCValueCategoryName() { return _myCQ.xdfgetCategoryName(); }
-    protected ConditionValue xgetCValueCategoryFlag() { return _myCQ.xdfgetCategoryFlag(); }
+    protected ConditionValue xgetCValueCategoryNumber() { return _myCQ.xdfgetCategoryNumber(); }
     protected Map<String, Object> xfindFixedConditionDynamicParameterMap(String pp) { return null; }
     public String keepScalarCondition(CategoryCQ sq)
     { throwIICBOE("ScalarCondition"); return null; }

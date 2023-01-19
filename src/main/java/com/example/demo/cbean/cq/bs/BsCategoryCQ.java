@@ -95,14 +95,14 @@ public class BsCategoryCQ extends AbstractBsCategoryCQ {
 
     /**
      * Add order-by as ascend. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsCategoryCQ addOrderBy_Id_Asc() { regOBA("id"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsCategoryCQ addOrderBy_Id_Desc() { regOBD("id"); return this; }
@@ -127,25 +127,25 @@ public class BsCategoryCQ extends AbstractBsCategoryCQ {
      */
     public BsCategoryCQ addOrderBy_CategoryName_Desc() { regOBD("category_name"); return this; }
 
-    protected ConditionValue _categoryFlag;
-    public ConditionValue xdfgetCategoryFlag()
-    { if (_categoryFlag == null) { _categoryFlag = nCV(); }
-      return _categoryFlag; }
-    protected ConditionValue xgetCValueCategoryFlag() { return xdfgetCategoryFlag(); }
+    protected ConditionValue _categoryNumber;
+    public ConditionValue xdfgetCategoryNumber()
+    { if (_categoryNumber == null) { _categoryNumber = nCV(); }
+      return _categoryNumber; }
+    protected ConditionValue xgetCValueCategoryNumber() { return xdfgetCategoryNumber(); }
 
     /**
      * Add order-by as ascend. <br>
-     * category_flag: {NotNull, BIT}
+     * category_number: {NotNull, INT(10)}
      * @return this. (NotNull)
      */
-    public BsCategoryCQ addOrderBy_CategoryFlag_Asc() { regOBA("category_flag"); return this; }
+    public BsCategoryCQ addOrderBy_CategoryNumber_Asc() { regOBA("category_number"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * category_flag: {NotNull, BIT}
+     * category_number: {NotNull, INT(10)}
      * @return this. (NotNull)
      */
-    public BsCategoryCQ addOrderBy_CategoryFlag_Desc() { regOBD("category_flag"); return this; }
+    public BsCategoryCQ addOrderBy_CategoryNumber_Desc() { regOBD("category_number"); return this; }
 
     // ===================================================================================
     //                                                             SpecifiedDerivedOrderBy

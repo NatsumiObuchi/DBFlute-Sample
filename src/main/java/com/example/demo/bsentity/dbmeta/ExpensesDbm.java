@@ -81,7 +81,7 @@ public class ExpensesDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnId = cci("id", "id", null, null, Integer.class, "id", null, true, true, true, "INT", 10, 0, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnId = cci("id", "id", null, null, Integer.class, "id", null, true, false, true, "INT", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnDate = cci("date", "date", null, null, java.time.LocalDate.class, "date", null, false, false, true, "DATE", 10, 0, null, null, false, null, null, null, null, null, false);
     protected final ColumnInfo _columnCategoryId = cci("category_id", "category_id", null, null, Integer.class, "categoryId", null, false, false, true, "INT", 10, 0, null, null, false, null, null, "category", null, null, false);
     protected final ColumnInfo _columnIncome = cci("income", "income", null, null, Integer.class, "income", null, false, false, false, "INT", 10, 0, null, null, false, null, null, null, null, null, false);
@@ -89,7 +89,7 @@ public class ExpensesDbm extends AbstractDBMeta {
     protected final ColumnInfo _columnDetail = cci("detail", "detail", null, null, String.class, "detail", null, false, false, false, "VARCHAR", 20, 0, null, null, false, null, null, null, null, null, false);
 
     /**
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnId() { return _columnId; }
@@ -166,7 +166,6 @@ public class ExpensesDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                        Various Info
     //                                                                        ============
-    public boolean hasIdentity() { return true; }
 
     // ===================================================================================
     //                                                                           Type Name

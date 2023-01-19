@@ -81,14 +81,14 @@ public class BsExpensesCQ extends AbstractBsExpensesCQ {
 
     /**
      * Add order-by as ascend. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsExpensesCQ addOrderBy_Id_Asc() { regOBA("id"); return this; }
 
     /**
      * Add order-by as descend. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @return this. (NotNull)
      */
     public BsExpensesCQ addOrderBy_Id_Desc() { regOBD("id"); return this; }

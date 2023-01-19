@@ -84,7 +84,7 @@ public class BsCategoryCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param id : PK, ID, NotNull, INT(10). (NotNull)
+     * @param id : PK, NotNull, INT(10). (NotNull)
      * @return this. (NotNull)
      */
     public CategoryCB acceptPK(Integer id) {
@@ -287,7 +287,7 @@ public class BsCategoryCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * id: {PK, ID, NotNull, INT(10)}
+         * id: {PK, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnId() { return doColumn("id"); }
@@ -297,10 +297,10 @@ public class BsCategoryCB extends AbstractConditionBean {
          */
         public SpecifiedColumn columnCategoryName() { return doColumn("category_name"); }
         /**
-         * category_flag: {NotNull, BIT}
+         * category_number: {NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
-        public SpecifiedColumn columnCategoryFlag() { return doColumn("category_flag"); }
+        public SpecifiedColumn columnCategoryNumber() { return doColumn("category_number"); }
         public void everyColumn() { doEveryColumn(); }
         public void exceptRecordMetaColumn() { doExceptRecordMetaColumn(); }
         @Override

@@ -178,7 +178,7 @@ map:{
     #  The value of an encoding for source files that are generated classes.
     #  If source files of your project are not UTF-8, specify your encoding here.
     #
-    #; sourceFileEncoding = UTF-8
+    ; sourceFileEncoding = UTF-8
     # - - - - - - - - - -/
 
     # /- - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

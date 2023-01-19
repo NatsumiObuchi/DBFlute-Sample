@@ -2,7 +2,9 @@ package com.example.demo.controller;
 
 import com.example.demo.cbean.CategoryCB;
 import com.example.demo.exbhv.CategoryBhv;
+import com.example.demo.exbhv.ExpensesBhv;
 import com.example.demo.exentity.Category;
+import com.example.demo.service.CategoryService;
 
 import java.util.List;
 
@@ -20,14 +22,27 @@ public class CategoryController {
 	@Autowired
 	private CategoryBhv categoryBhv;
 	
+	@Autowired
+	private ExpensesBhv expensesBhv;
+	
+	@Autowired
+	private CategoryService service;
+	
 	@RequestMapping("/top")
 	public String test() throws Exception{
-	
-		int count = categoryBhv.selectCount(cb -> {
-			cb.query().setId_IsNotNull();
-		});
-			System.out.println(count);	
-	
+		
+		service.notNUllCategory();
+		
+//		int count = expensesBhv.selectCount(cb -> {
+//			cb.query().setId_IsNotNull();
+//		});
+//		System.out.println(count);
+		
+//		int count = categoryBhv.selectCount(cb -> {
+//			cb.query().setId_IsNotNull();
+//		});
+//			System.out.println(count);	
+//	
 
 //		１．失敗（エラー：Not found the invoker of behavior command in the behavior!）
 //		Integer categoryId = 1;

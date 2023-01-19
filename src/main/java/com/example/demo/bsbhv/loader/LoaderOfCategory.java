@@ -15,13 +15,13 @@ import com.example.demo.cbean.*;
  *     id
  *
  * [column]
- *     id, category_name, category_flag
+ *     id, category_name, category_number
  *
  * [sequence]
  *     
  *
  * [identity]
- *     id
+ *     
  *
  * [version-no]
  *     

@@ -84,7 +84,7 @@ public class BsExpensesCB extends AbstractConditionBean {
     //                                                                 ===================
     /**
      * Accept the query condition of primary key as equal.
-     * @param id : PK, ID, NotNull, INT(10). (NotNull)
+     * @param id : PK, NotNull, INT(10). (NotNull)
      * @return this. (NotNull)
      */
     public ExpensesCB acceptPK(Integer id) {
@@ -308,7 +308,7 @@ public class BsExpensesCB extends AbstractConditionBean {
                              , HpSDRFunctionFactory sdrFuncFactory)
         { super(baseCB, qyCall, purpose, dbmetaProvider, sdrFuncFactory); }
         /**
-         * id: {PK, ID, NotNull, INT(10)}
+         * id: {PK, NotNull, INT(10)}
          * @return The information object of specified column. (NotNull)
          */
         public SpecifiedColumn columnId() { return doColumn("id"); }

@@ -24,7 +24,7 @@ import com.example.demo.exentity.*;
  *     
  *
  * [identity]
- *     id
+ *     
  *
  * [version-no]
  *     
@@ -70,7 +70,7 @@ public abstract class BsExpenses extends AbstractEntity implements DomainEntity 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** id: {PK, ID, NotNull, INT(10)} */
+    /** id: {PK, NotNull, INT(10)} */
     protected Integer _id;
 
     /** date: {NotNull, DATE(10)} */
@@ -210,7 +210,7 @@ public abstract class BsExpenses extends AbstractEntity implements DomainEntity 
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] id: {PK, ID, NotNull, INT(10)} <br>
+     * [get] id: {PK, NotNull, INT(10)} <br>
      * @return The value of the column 'id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getId() {
@@ -219,7 +219,7 @@ public abstract class BsExpenses extends AbstractEntity implements DomainEntity 
     }
 
     /**
-     * [set] id: {PK, ID, NotNull, INT(10)} <br>
+     * [set] id: {PK, NotNull, INT(10)} <br>
      * @param id The value of the column 'id'. (basically NotNull if update: for the constraint)
      */
     public void setId(Integer id) {

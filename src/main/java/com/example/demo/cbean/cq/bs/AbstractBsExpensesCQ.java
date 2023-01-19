@@ -45,7 +45,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_Equal(Integer id) {
@@ -58,7 +58,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_NotEqual(Integer id) {
@@ -71,7 +71,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_GreaterThan(Integer id) {
@@ -80,7 +80,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_LessThan(Integer id) {
@@ -89,7 +89,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_GreaterEqual(Integer id) {
@@ -98,7 +98,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_LessEqual(Integer id) {
@@ -109,7 +109,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param minNumber The min number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param maxNumber The max number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -122,7 +122,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param minNumber The min number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param maxNumber The max number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -133,7 +133,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param idList The collection of id as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setId_InScope(Collection<Integer> idList) {
@@ -146,7 +146,7 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param idList The collection of id as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setId_NotInScope(Collection<Integer> idList) {
@@ -159,13 +159,13 @@ public abstract class AbstractBsExpensesCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      */
     public void setId_IsNull() { regId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      */
     public void setId_IsNotNull() { regId(CK_ISNN, DOBJ); }
 

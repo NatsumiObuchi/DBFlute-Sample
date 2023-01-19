@@ -44,7 +44,7 @@ public class CategoryDbm extends AbstractDBMeta {
     protected void xsetupEpg() {
         setupEpg(_epgMap, et -> ((Category)et).getId(), (et, vl) -> ((Category)et).setId(cti(vl)), "id");
         setupEpg(_epgMap, et -> ((Category)et).getCategoryName(), (et, vl) -> ((Category)et).setCategoryName((String)vl), "categoryName");
-        setupEpg(_epgMap, et -> ((Category)et).getCategoryFlag(), (et, vl) -> ((Category)et).setCategoryFlag((Boolean)vl), "categoryFlag");
+        setupEpg(_epgMap, et -> ((Category)et).getCategoryNumber(), (et, vl) -> ((Category)et).setCategoryNumber(cti(vl)), "categoryNumber");
     }
     public PropertyGateway findPropertyGateway(String prop)
     { return doFindEpg(_epgMap, prop); }
@@ -65,12 +65,12 @@ public class CategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                         Column Info
     //                                                                         ===========
-    protected final ColumnInfo _columnId = cci("id", "id", null, null, Integer.class, "id", null, true, true, true, "INT", 10, 0, null, null, false, null, null, null, "expensesList", null, false);
+    protected final ColumnInfo _columnId = cci("id", "id", null, null, Integer.class, "id", null, true, false, true, "INT", 10, 0, null, null, false, null, null, null, "expensesList", null, false);
     protected final ColumnInfo _columnCategoryName = cci("category_name", "category_name", null, null, String.class, "categoryName", null, false, false, true, "VARCHAR", 15, 0, null, null, false, null, null, null, null, null, false);
-    protected final ColumnInfo _columnCategoryFlag = cci("category_flag", "category_flag", null, null, Boolean.class, "categoryFlag", null, false, false, true, "BIT", null, null, null, null, false, null, null, null, null, null, false);
+    protected final ColumnInfo _columnCategoryNumber = cci("category_number", "category_number", null, null, Integer.class, "categoryNumber", null, false, false, true, "INT", 10, 0, null, null, false, null, null, null, null, null, false);
 
     /**
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @return The information object of specified column. (NotNull)
      */
     public ColumnInfo columnId() { return _columnId; }
@@ -80,16 +80,16 @@ public class CategoryDbm extends AbstractDBMeta {
      */
     public ColumnInfo columnCategoryName() { return _columnCategoryName; }
     /**
-     * category_flag: {NotNull, BIT}
+     * category_number: {NotNull, INT(10)}
      * @return The information object of specified column. (NotNull)
      */
-    public ColumnInfo columnCategoryFlag() { return _columnCategoryFlag; }
+    public ColumnInfo columnCategoryNumber() { return _columnCategoryNumber; }
 
     protected List<ColumnInfo> ccil() {
         List<ColumnInfo> ls = newArrayList();
         ls.add(columnId());
         ls.add(columnCategoryName());
-        ls.add(columnCategoryFlag());
+        ls.add(columnCategoryNumber());
         return ls;
     }
 
@@ -129,7 +129,6 @@ public class CategoryDbm extends AbstractDBMeta {
     // ===================================================================================
     //                                                                        Various Info
     //                                                                        ============
-    public boolean hasIdentity() { return true; }
 
     // ===================================================================================
     //                                                                           Type Name

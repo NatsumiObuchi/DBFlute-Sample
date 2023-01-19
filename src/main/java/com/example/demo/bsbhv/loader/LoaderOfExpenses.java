@@ -19,7 +19,7 @@ import com.example.demo.exentity.*;
  *     
  *
  * [identity]
- *     id
+ *     
  *
  * [version-no]
  *     

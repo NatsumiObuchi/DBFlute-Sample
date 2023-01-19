@@ -16,13 +16,13 @@ import com.example.demo.exentity.*;
  *     id
  *
  * [column]
- *     id, category_name, category_flag
+ *     id, category_name, category_number
  *
  * [sequence]
  *     
  *
  * [identity]
- *     id
+ *     
  *
  * [version-no]
  *     
@@ -43,10 +43,10 @@ import com.example.demo.exentity.*;
  * /= = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = = =
  * Integer id = entity.getId();
  * String categoryName = entity.getCategoryName();
- * Boolean categoryFlag = entity.getCategoryFlag();
+ * Integer categoryNumber = entity.getCategoryNumber();
  * entity.setId(id);
  * entity.setCategoryName(categoryName);
- * entity.setCategoryFlag(categoryFlag);
+ * entity.setCategoryNumber(categoryNumber);
  * = = = = = = = = = =/
  * </pre>
  * @author DBFlute(AutoGenerator)
@@ -62,14 +62,14 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     // ===================================================================================
     //                                                                           Attribute
     //                                                                           =========
-    /** id: {PK, ID, NotNull, INT(10)} */
+    /** id: {PK, NotNull, INT(10)} */
     protected Integer _id;
 
     /** category_name: {NotNull, VARCHAR(15)} */
     protected String _categoryName;
 
-    /** category_flag: {NotNull, BIT} */
-    protected Boolean _categoryFlag;
+    /** category_number: {NotNull, INT(10)} */
+    protected Integer _categoryNumber;
 
     // ===================================================================================
     //                                                                             DB Meta
@@ -158,7 +158,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
         StringBuilder sb = new StringBuilder();
         sb.append(dm).append(xfND(_id));
         sb.append(dm).append(xfND(_categoryName));
-        sb.append(dm).append(xfND(_categoryFlag));
+        sb.append(dm).append(xfND(_categoryNumber));
         if (sb.length() > dm.length()) {
             sb.delete(0, dm.length());
         }
@@ -186,7 +186,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     //                                                                            Accessor
     //                                                                            ========
     /**
-     * [get] id: {PK, ID, NotNull, INT(10)} <br>
+     * [get] id: {PK, NotNull, INT(10)} <br>
      * @return The value of the column 'id'. (basically NotNull if selected: for the constraint)
      */
     public Integer getId() {
@@ -195,7 +195,7 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     }
 
     /**
-     * [set] id: {PK, ID, NotNull, INT(10)} <br>
+     * [set] id: {PK, NotNull, INT(10)} <br>
      * @param id The value of the column 'id'. (basically NotNull if update: for the constraint)
      */
     public void setId(Integer id) {
@@ -222,20 +222,20 @@ public abstract class BsCategory extends AbstractEntity implements DomainEntity 
     }
 
     /**
-     * [get] category_flag: {NotNull, BIT} <br>
-     * @return The value of the column 'category_flag'. (basically NotNull if selected: for the constraint)
+     * [get] category_number: {NotNull, INT(10)} <br>
+     * @return The value of the column 'category_number'. (basically NotNull if selected: for the constraint)
      */
-    public Boolean getCategoryFlag() {
-        checkSpecifiedProperty("categoryFlag");
-        return _categoryFlag;
+    public Integer getCategoryNumber() {
+        checkSpecifiedProperty("categoryNumber");
+        return _categoryNumber;
     }
 
     /**
-     * [set] category_flag: {NotNull, BIT} <br>
-     * @param categoryFlag The value of the column 'category_flag'. (basically NotNull if update: for the constraint)
+     * [set] category_number: {NotNull, INT(10)} <br>
+     * @param categoryNumber The value of the column 'category_number'. (basically NotNull if update: for the constraint)
      */
-    public void setCategoryFlag(Boolean categoryFlag) {
-        registerModifiedProperty("categoryFlag");
-        _categoryFlag = categoryFlag;
+    public void setCategoryNumber(Integer categoryNumber) {
+        registerModifiedProperty("categoryNumber");
+        _categoryNumber = categoryNumber;
     }
 }

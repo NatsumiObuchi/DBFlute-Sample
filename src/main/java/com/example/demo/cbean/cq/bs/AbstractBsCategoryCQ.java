@@ -45,7 +45,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
     //                                                                               =====
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as equal. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_Equal(Integer id) {
@@ -58,7 +58,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as notEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_NotEqual(Integer id) {
@@ -71,7 +71,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as greaterThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_GreaterThan(Integer id) {
@@ -80,7 +80,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as lessThan. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_LessThan(Integer id) {
@@ -89,7 +89,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as greaterEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_GreaterEqual(Integer id) {
@@ -98,7 +98,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param id The value of id as lessEqual. (basically NotNull: error as default, or no condition as option)
      */
     public void setId_LessEqual(Integer id) {
@@ -109,7 +109,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param minNumber The min number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param maxNumber The max number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param opLambda The callback for option of range-of. (NotNull)
@@ -122,7 +122,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
      * RangeOf with various options. (versatile) <br>
      * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
      * And NullIgnored, OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param minNumber The min number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param maxNumber The max number of id. (basically NotNull: if op.allowOneSide(), null allowed)
      * @param rangeOfOption The option of range-of. (NotNull)
@@ -133,7 +133,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param idList The collection of id as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setId_InScope(Collection<Integer> idList) {
@@ -146,7 +146,7 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      * @param idList The collection of id as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
      */
     public void setId_NotInScope(Collection<Integer> idList) {
@@ -232,13 +232,13 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * IsNull {is null}. And OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      */
     public void setId_IsNull() { regId(CK_ISN, DOBJ); }
 
     /**
      * IsNotNull {is not null}. And OnlyOnceRegistered. <br>
-     * id: {PK, ID, NotNull, INT(10)}
+     * id: {PK, NotNull, INT(10)}
      */
     public void setId_IsNotNull() { regId(CK_ISNN, DOBJ); }
 
@@ -382,15 +382,120 @@ public abstract class AbstractBsCategoryCQ extends AbstractConditionQuery {
 
     /**
      * Equal(=). And NullIgnored, OnlyOnceRegistered. <br>
-     * category_flag: {NotNull, BIT}
-     * @param categoryFlag The value of categoryFlag as equal. (basically NotNull: error as default, or no condition as option)
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumber The value of categoryNumber as equal. (basically NotNull: error as default, or no condition as option)
      */
-    public void setCategoryFlag_Equal(Boolean categoryFlag) {
-        regCategoryFlag(CK_EQ, categoryFlag);
+    public void setCategoryNumber_Equal(Integer categoryNumber) {
+        doSetCategoryNumber_Equal(categoryNumber);
     }
 
-    protected void regCategoryFlag(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCategoryFlag(), "category_flag"); }
-    protected abstract ConditionValue xgetCValueCategoryFlag();
+    protected void doSetCategoryNumber_Equal(Integer categoryNumber) {
+        regCategoryNumber(CK_EQ, categoryNumber);
+    }
+
+    /**
+     * NotEqual(&lt;&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumber The value of categoryNumber as notEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_NotEqual(Integer categoryNumber) {
+        doSetCategoryNumber_NotEqual(categoryNumber);
+    }
+
+    protected void doSetCategoryNumber_NotEqual(Integer categoryNumber) {
+        regCategoryNumber(CK_NES, categoryNumber);
+    }
+
+    /**
+     * GreaterThan(&gt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumber The value of categoryNumber as greaterThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_GreaterThan(Integer categoryNumber) {
+        regCategoryNumber(CK_GT, categoryNumber);
+    }
+
+    /**
+     * LessThan(&lt;). And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumber The value of categoryNumber as lessThan. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_LessThan(Integer categoryNumber) {
+        regCategoryNumber(CK_LT, categoryNumber);
+    }
+
+    /**
+     * GreaterEqual(&gt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumber The value of categoryNumber as greaterEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_GreaterEqual(Integer categoryNumber) {
+        regCategoryNumber(CK_GE, categoryNumber);
+    }
+
+    /**
+     * LessEqual(&lt;=). And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumber The value of categoryNumber as lessEqual. (basically NotNull: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_LessEqual(Integer categoryNumber) {
+        regCategoryNumber(CK_LE, categoryNumber);
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param minNumber The min number of categoryNumber. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of categoryNumber. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param opLambda The callback for option of range-of. (NotNull)
+     */
+    public void setCategoryNumber_RangeOf(Integer minNumber, Integer maxNumber, ConditionOptionCall<RangeOfOption> opLambda) {
+        setCategoryNumber_RangeOf(minNumber, maxNumber, xcROOP(opLambda));
+    }
+
+    /**
+     * RangeOf with various options. (versatile) <br>
+     * {(default) minNumber &lt;= column &lt;= maxNumber} <br>
+     * And NullIgnored, OnlyOnceRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param minNumber The min number of categoryNumber. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param maxNumber The max number of categoryNumber. (basically NotNull: if op.allowOneSide(), null allowed)
+     * @param rangeOfOption The option of range-of. (NotNull)
+     */
+    protected void setCategoryNumber_RangeOf(Integer minNumber, Integer maxNumber, RangeOfOption rangeOfOption) {
+        regROO(minNumber, maxNumber, xgetCValueCategoryNumber(), "category_number", rangeOfOption);
+    }
+
+    /**
+     * InScope {in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumberList The collection of categoryNumber as inScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_InScope(Collection<Integer> categoryNumberList) {
+        doSetCategoryNumber_InScope(categoryNumberList);
+    }
+
+    protected void doSetCategoryNumber_InScope(Collection<Integer> categoryNumberList) {
+        regINS(CK_INS, cTL(categoryNumberList), xgetCValueCategoryNumber(), "category_number");
+    }
+
+    /**
+     * NotInScope {not in (1, 2)}. And NullIgnored, NullElementIgnored, SeveralRegistered. <br>
+     * category_number: {NotNull, INT(10)}
+     * @param categoryNumberList The collection of categoryNumber as notInScope. (basically NotNull, NotEmpty: error as default, or no condition as option)
+     */
+    public void setCategoryNumber_NotInScope(Collection<Integer> categoryNumberList) {
+        doSetCategoryNumber_NotInScope(categoryNumberList);
+    }
+
+    protected void doSetCategoryNumber_NotInScope(Collection<Integer> categoryNumberList) {
+        regINS(CK_NINS, cTL(categoryNumberList), xgetCValueCategoryNumber(), "category_number");
+    }
+
+    protected void regCategoryNumber(ConditionKey ky, Object vl) { regQ(ky, vl, xgetCValueCategoryNumber(), "category_number"); }
+    protected abstract ConditionValue xgetCValueCategoryNumber();
 
     // ===================================================================================
     //                                                                     ScalarCondition
